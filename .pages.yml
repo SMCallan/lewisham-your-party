@@ -15,6 +15,9 @@ content:
         label: Publish Date
         type: date
         required: true
+      - name: featured_image
+        label: Featured Image
+        type: image
       - name: body
         label: Article Content
         type: rich-text

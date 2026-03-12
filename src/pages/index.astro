@@ -40,6 +40,13 @@ const sortedNews = allNews.sort((a: any, b: any) =>
 				<div class="flex flex-col gap-6">
 					{sortedNews.map((post: any) => (
 						<article class="bg-white p-6 shadow-md border-l-8 border-yp-red">
+							{post.frontmatter.featured_image && (
+								<img 
+									src={post.frontmatter.featured_image} 
+									alt="" 
+									class="w-full h-64 object-cover mb-6 shadow-sm"
+								/>
+							)}
 							<p class="text-sm font-bold text-gray-400 mb-1 tracking-widest uppercase">
 								{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
 							</p>
