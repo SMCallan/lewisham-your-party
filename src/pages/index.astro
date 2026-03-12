@@ -24,53 +24,37 @@ const sortedNews = allNews.sort((a: any, b: any) =>
                     One that belongs to us. We organize local campaigning, fight against gentrification, and stand for homes for people, not profit.
                 </p>
                 
-                <form method="POST" id="zcampaignOptinForm" action="https://zcv2-zcmp.maillist-manage.eu/weboptin.zc" target="_zcSignup" onsubmit="zcScptlessSubmit(this)" class="mt-6 w-full max-w-xl">
+                <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl">
                     
+                    <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
+                    
+                    <input type="hidden" name="redirect" value="https://lewishamyourparty.org.uk/success" />
+                    
+                    <input type="hidden" name="subject" value="New Member Signup - Lewisham YP" />
+                    <input type="hidden" name="from_name" value="Lewisham YP Website" />
+
                     <div class="flex flex-col sm:flex-row gap-3">
                         <input 
                             type="email" 
                             placeholder="Enter your email" 
-                            name="CONTACT_EMAIL" 
-                            id="EMBED_FORM_EMAIL_LABEL" 
+                            name="email" 
                             required
-                            class="flex-grow p-4 text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red"
+                            class="flex-grow p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full"
                         />
-                        <input 
+                        <button 
                             type="submit" 
-                            name="SIGNUP_SUBMIT_BUTTON" 
-                            id="zcWebOptin" 
-                            value="JOIN THE BRANCH" 
-                            class="bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer"
-                        />
+                            class="bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer whitespace-nowrap"
+                        >
+                            JOIN THE BRANCH
+                        </button>
                     </div>
 
                     <div class="mt-4 flex items-start gap-3 text-sm opacity-90">
-                        <input type="checkbox" id="consent" required class="mt-1 w-4 h-4 cursor-pointer" />
+                        <input type="checkbox" id="consent" name="gdpr_consent" required class="mt-1 w-4 h-4 cursor-pointer" />
                         <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP.</label>
                     </div>
                     <p class="text-xs opacity-60 mt-2 italic">*After clicking submit, you will be securely redirected to the national Your Party website.</p>
 
-                    <div class="hidden">
-                        <input type="hidden" id="fieldBorder" value="">
-                        <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
-                        <input type="hidden" id="emailReportId" name="emailReportId" value="">
-                        <input type="hidden" id="formType" name="formType" value="QuickForm">
-                        <input type="hidden" name="zx" id="cmpZuid" value="14aed49284">
-                        <input type="hidden" name="zcvers" value="2.0">
-                        <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
-                        <input type="hidden" id="mode" name="mode" value="OptinCreateView">
-                        <input type="hidden" id="zcld" name="zcld" value="13d452547cbe7936">
-                        <input type="hidden" id="zctd" name="zctd" value="13d452547cbe7541">
-                        <input type="hidden" id="document_domain" value="">
-                        <input type="hidden" id="zc_Url" value="zcv2-zcmp.maillist-manage.eu">
-                        <input type="hidden" id="new_optin_response_in" value="1">
-                        <input type="hidden" id="duplicate_optin_response_in" value="1">
-                        <input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
-                        <input type="hidden" id="zc_formIx" name="zc_formIx" value="3z1b46e5de7361da99aefe6b99cbe608fa226402311df40b6c2d157170db47295b">
-                        <input type="hidden" id="viewFrom" value="URL_ACTION">
-                        <input type="hidden" id="scriptless" name="scriptless" value="yes">
-                        <input type="hidden" id="zc_spmSubmit" name="zc_spmSubmit" value="ZCSPMSUBMIT">
-                    </div>
                 </form>
             </div>
             
@@ -109,10 +93,3 @@ const sortedNews = allNews.sort((a: any, b: any) =>
         </div>
     </main>
 </Layout>
-
-<script is:inline>
-	function zcScptlessSubmit(parentNode){
-		if(parentNode.querySelector("#zc_spmSubmit")){parentNode.querySelector("#zc_spmSubmit").remove();}
-        parentNode.submit();
-	}
-</script>
