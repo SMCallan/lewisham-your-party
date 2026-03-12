@@ -27,7 +27,7 @@ The only financial overhead for this entire platform is the annual cost of the `
 If you are a campaign organizer or coms admin, **you do not need to touch any code or understand GitHub.** We use a user-friendly system called [Pages CMS](https://pagescms.org) that sits directly on top of this code.
 
 **To write an update or schedule an event:**
-1. Go to **[PagesCMS.org](https://pagescms.org)** and click "Log in with GitHub".
+1. Go to **[PagesCMS.org](https://pagescms.org)** and click "Log in with an associated email".
 2. Select the `lewisham-your-party` repository.
 3. Click on **Updates & Events** in the left sidebar.
 4. Click **New Entry**.
