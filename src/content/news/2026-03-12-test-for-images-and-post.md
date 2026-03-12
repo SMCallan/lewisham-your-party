@@ -1,5 +1,6 @@
 ---
 title: "Test for images and post "
+category: Announcements
 date: 2026-03-12
 featured_image: /images/Your_Party_logo.svg
 ---

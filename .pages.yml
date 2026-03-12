@@ -3,7 +3,7 @@ media:
   output: /images
 content:
   - name: news
-    label: News Updates
+    label: Updates & Events
     type: collection
     path: src/content/news
     fields:
@@ -11,10 +11,21 @@ content:
         label: Article Title
         type: string
         required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          - Events
+          - Street Action
+          - Announcements
+        required: true
       - name: date
-        label: Publish Date
+        label: Date (Event Date or Publish Date)
         type: date
         required: true
+      - name: location
+        label: Location (Optional)
+        type: string
       - name: featured_image
         label: Featured Image
         type: image

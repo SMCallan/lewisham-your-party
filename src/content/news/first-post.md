@@ -1,5 +1,6 @@
 ---
 title: "Lewisham YourParty Needs You!!"
+category: Announcements
 date: 2026-03-20
 ---
 

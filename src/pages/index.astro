@@ -8,6 +8,9 @@ const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: 
 const sortedNews = allNews.sort((a: any, b: any) => 
     new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
 );
+
+// 3. Keep only the 3 most recent posts for the homepage feed
+const latestUpdates = sortedNews.slice(0, 3);
 ---
 
 <Layout title="Lewisham Your Party">
@@ -25,11 +28,8 @@ const sortedNews = allNews.sort((a: any, b: any) =>
                 </p>
                 
                 <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl">
-                    
                     <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
-                    
                     <input type="hidden" name="redirect" value="https://lewishamyourparty.org.uk/success" />
-                    
                     <input type="hidden" name="subject" value="New Member Signup - Lewisham YP" />
                     <input type="hidden" name="from_name" value="Lewisham YP Website" />
 
@@ -54,32 +54,45 @@ const sortedNews = allNews.sort((a: any, b: any) =>
                         <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP.</label>
                     </div>
                     <p class="text-xs opacity-60 mt-2 italic">*After clicking submit, you will be securely redirected to the national Your Party website.</p>
-
                 </form>
             </div>
             
             <div class="mt-8 flex gap-4 flex-wrap font-bold text-sm uppercase">
-                <span class="bg-yp-red text-white px-3 py-1">Meeting</span>
-                <span class="bg-yp-red text-white px-3 py-1">Street Action</span>
-                <span class="bg-yp-red text-white px-3 py-1">Discussion</span>
+                <a href="/events" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Events</a>
+                <a href="/street-action" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Street Action</a>
+                <a href="/announcements" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Announcements</a>
             </div>
 
             <div class="mt-20">
                 <h3 class="text-4xl font-heading uppercase border-b-4 border-yp-red inline-block mb-8">Latest Updates</h3>
                 
                 <div class="flex flex-col gap-6">
-                    {sortedNews.map((post: any) => (
-                        <article class="bg-white p-6 shadow-md border-l-8 border-yp-red">
+                    {latestUpdates.map((post: any) => (
+                        <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
+                            {/* Category Badge */}
+                            {post.frontmatter.category && (
+                                <span class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase">
+                                    {post.frontmatter.category}
+                                </span>
+                            )}
+                            
                             {post.frontmatter.featured_image && (
                                 <img 
                                     src={post.frontmatter.featured_image} 
                                     alt="" 
-                                    class="w-full h-64 object-cover mb-6 shadow-sm"
+                                    class="w-full h-64 object-cover mb-6 shadow-sm mt-4"
                                 />
                             )}
-                            <p class="text-sm font-bold text-gray-400 mb-1 tracking-widest uppercase">
-                                {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
-                            </p>
+                            <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase mt-4">
+                                <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                {/* Location Display */}
+                                {post.frontmatter.location && (
+                                    <span class="text-yp-red flex items-center gap-1">
+                                        📍 {post.frontmatter.location}
+                                    </span>
+                                )}
+                            </div>
+                            
                             <h4 class="text-2xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h4>
                             
                             <div class="prose prose-slate max-w-none">

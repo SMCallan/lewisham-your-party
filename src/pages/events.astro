@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
+const filteredPosts = allNews
+    .filter((post: any) => post.frontmatter.category === 'Events')
+    .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+
+<Layout title="Events - Lewisham Your Party">
+    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
+        <div class="max-w-4xl mx-auto mt-8">
+            <a href="/" class="text-yp-red font-bold uppercase hover:underline mb-8 inline-block">&larr; Back to Home</a>
+            <h1 class="text-5xl md:text-7xl font-heading text-yp-slate uppercase tracking-tighter mb-12 border-b-4 border-yp-red inline-block">Events</h1>
+            
+            <div class="flex flex-col gap-6">
+                {filteredPosts.length === 0 ? <p class="opacity-70">No upcoming events right now.</p> : filteredPosts.map((post: any) => (
+                    <article class="bg-white p-6 shadow-md border-l-8 border-yp-red">
+                        <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
+                            <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                            {post.frontmatter.location && <span class="text-yp-red">📍 {post.frontmatter.location}</span>}
+                        </div>
+                        <h2 class="text-2xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h2>
+                        <div class="prose prose-slate max-w-none"><post.default /></div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </main>
+</Layout>
