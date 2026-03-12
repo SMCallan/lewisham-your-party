@@ -15,9 +15,10 @@ content:
         label: Category
         type: select
         options:
-          - Events
-          - Street Action
-          - Announcements
+          values:
+            - Events
+            - Street Action
+            - Announcements
         required: true
       - name: date
         label: Date (Event Date or Publish Date)
