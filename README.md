@@ -51,4 +51,6 @@ To run this site on your own computer, you will need [Node.js](https://nodejs.or
 1. **Clone the repository** to your computer.
 2. **Install the dependencies:**
    ```bash
+   >useful commands to use<
    npm install
+   npm run dev    
