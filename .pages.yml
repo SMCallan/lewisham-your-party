@@ -1,0 +1,21 @@
+media:
+  input: public/images
+  output: /images
+content:
+  - name: news
+    label: News Updates
+    type: collection
+    path: src/content/news
+    fields:
+      - name: title
+        label: Article Title
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: body
+        label: Article Content
+        type: rich-text
+        required: true

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  /* This automatically generates bg-yp-red, text-yp-red, etc. */
+  --color-yp-red: #ea433b;
+  --color-yp-slate: #22383f;
+  --color-yp-cream: #f4efeb;
+  
+  /* The national site uses a heavy, condensed font for headers */
+  --font-heading: "Impact", "Arial Black", sans-serif;
+}
