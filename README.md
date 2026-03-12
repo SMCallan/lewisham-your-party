@@ -1,4 +1,7 @@
-# Lewisham Your Party - Official Website 🌹
+![Your_Party_logo](https://github.com/user-attachments/assets/886de2e4-a145-47da-9694-f2f5a3d28383)# Lewisham Your Party - Official Website ![Uploadin<svg xmlns="http://www.w3.org/2000/svg" width="378" height="378" viewBox="0 0 100 100"><path d="M36 45h100L36 145z" style="fill:#f03939" transform="translate(-36 -45)"/></svg>
+
+g Your_Party_logo.svg…]()
+
 
 Welcome to the official code repository for the Lewisham branch of Your Party. 
 
