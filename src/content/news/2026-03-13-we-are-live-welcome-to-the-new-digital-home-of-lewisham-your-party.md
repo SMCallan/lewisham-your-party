@@ -20,4 +20,4 @@ This website is a reflection of our core political philosophy. It wasn't built b
 
 We are building a new kind of political party—one that actually belongs to us. We stand for homes for people, not profit, and we are ready to take that message to every doorstep in Lewisham SE6 and beyond. But a website is just a tool. The real power of this movement is you.
 
-## **Sign up on the homepage, share this site with your neighbors, and let's get to work.**
+## **Sign up on the homepage, share this site with your neighbours, and let's get to work.**
