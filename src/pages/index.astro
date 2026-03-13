@@ -51,7 +51,7 @@ const latestUpdates = sortedNews.slice(0, 3);
 
                     <div class="mt-4 flex items-start gap-3 text-sm opacity-90">
                         <input type="checkbox" id="consent" name="gdpr_consent" required class="mt-1 w-4 h-4 cursor-pointer" />
-                        <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP.</label>
+                        <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP. See our <a href="/privacy-notice" class="underline hover:text-yp-red">Privacy Notice</a>.</label>
                     </div>
                     <p class="text-xs opacity-60 mt-2 italic">*After clicking submit, you will be securely redirected to the national Your Party website.</p>
                 </form>
@@ -63,13 +63,12 @@ const latestUpdates = sortedNews.slice(0, 3);
                 <a href="/announcements" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Announcements</a>
             </div>
 
-            <div class="mt-20">
+            <div class="mt-20 mb-20">
                 <h3 class="text-4xl font-heading uppercase border-b-4 border-yp-red inline-block mb-8">Latest Updates</h3>
                 
                 <div class="flex flex-col gap-6">
                     {latestUpdates.map((post: any) => (
                         <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
-                            {/* Category Badge */}
                             {post.frontmatter.category && (
                                 <span class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase">
                                     {post.frontmatter.category}
@@ -85,7 +84,6 @@ const latestUpdates = sortedNews.slice(0, 3);
                             )}
                             <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase mt-4">
                                 <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                {/* Location Display */}
                                 {post.frontmatter.location && (
                                     <span class="text-yp-red flex items-center gap-1">
                                         📍 {post.frontmatter.location}
