@@ -1,6 +1,6 @@
 media:
-  input: public/images
-  output: /images
+  input: public/media
+  output: /media
 content:
   - name: news
     label: Updates & Events
