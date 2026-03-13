@@ -29,14 +29,22 @@ const latestUpdates = sortedNews.slice(0, 3);
                 
                 <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl">
                     <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
+                    
                     <input type="hidden" name="redirect" value="https://lewishamyourparty.org.uk/success" />
                     <input type="hidden" name="subject" value="New Member Signup - Lewisham YP" />
                     <input type="hidden" name="from_name" value="Lewisham YP Website" />
 
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <input type="text" name="First Name" placeholder="First Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                        <input type="text" name="Last Name" placeholder="Last Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                        <input type="text" name="Postcode" placeholder="Postcode *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full uppercase" />
+                        <input type="tel" name="Phone" placeholder="Phone (Optional)" class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                    </div>
+
                     <div class="flex flex-col sm:flex-row gap-3">
                         <input 
                             type="email" 
-                            placeholder="Enter your email" 
+                            placeholder="Enter your email *" 
                             name="email" 
                             required
                             class="flex-grow p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full"
@@ -77,8 +85,6 @@ const latestUpdates = sortedNews.slice(0, 3);
                     <a href="/announcements" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Announcements</a>
                     <a href="/campaigns" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Campaigns</a>
                 </div>
-                
-            </div>
                 
             </div>
 
