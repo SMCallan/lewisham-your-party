@@ -57,10 +57,26 @@ const latestUpdates = sortedNews.slice(0, 3);
                 </form>
             </div>
             
-            <div class="mt-8 flex gap-4 flex-wrap font-bold text-sm uppercase">
-                <a href="/events" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Events</a>
-                <a href="/street-action" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Street Action</a>
-                <a href="/announcements" class="bg-yp-red text-white px-3 py-1 hover:bg-white hover:text-yp-red border border-transparent hover:border-yp-red transition-colors">Announcements</a>
+            <div class="mt-10 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
+                
+                {/* --- BIG TEXT NAVIGATION LINKS --- */}
+                <div class="flex gap-6 items-center">
+                    <a href="/about" class="text-3xl font-heading uppercase text-yp-slate hover:text-yp-red transition-colors tracking-wide underline decoration-4 underline-offset-4 decoration-transparent hover:decoration-yp-red">
+                        ABOUT & FAQS
+                    </a>
+                    
+                    <a href="https://yourparty.uk" target="_blank" rel="noopener noreferrer" class="text-3xl font-heading uppercase text-yp-slate hover:text-yp-red transition-colors tracking-wide underline decoration-4 underline-offset-4 decoration-transparent hover:decoration-yp-red flex items-center gap-1">
+                        NATIONAL SITE <span class="text-2xl leading-none">&nearr;</span>
+                    </a>
+                </div>
+
+                {/* --- FEED FILTER TAGS --- */}
+                <div class="flex gap-3 flex-wrap font-bold text-sm uppercase">
+                    <a href="/events" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Events</a>
+                    <a href="/street-action" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Street Action</a>
+                    <a href="/announcements" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Announcements</a>
+                </div>
+                
             </div>
 
             <div class="mt-20 mb-20">
