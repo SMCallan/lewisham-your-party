@@ -85,4 +85,3 @@ As our grassroots movement grows, the digital infrastructure needs to grow with 
 - [ ] **Google Sheets Automation:** Route Web3Forms signups to automatically populate a dedicated, secure Google Sheet for the organizing team.
 - [ ] **Expand Data Collection:** Update the HTML form to capture standard political data points alongside the email address (e.g., First Name, Last Name, Postcode).
 - [ ] **Dedicated Admin Emails:** Set up official `@lewishamyourparty.org.uk` email routing for the head organizer, media officer, etc.
-- [ ] **Legal Pages:** Create dedicated markdown pages for Privacy Policy, Cookie Policy, and Terms of Service.
