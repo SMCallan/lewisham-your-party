@@ -19,6 +19,7 @@ content:
             - Events
             - Street Action
             - Announcements
+            - Campaigns
         required: true
       - name: date
         label: Date (Event Date or Publish Date)
