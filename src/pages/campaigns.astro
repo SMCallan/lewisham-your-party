@@ -11,11 +11,16 @@ const campaignsPosts = allNews
     <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
         <div class="max-w-4xl mx-auto mb-20">
             
-            <a href="/" class="inline-block mb-8 text-yp-red font-bold uppercase tracking-wider hover:underline">
-                &larr; Back to Home
-            </a>
-            
-            <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter mb-10">Campaigns</h1>
+            {/* --- STANDARDIZED PAGE HEADER --- */}
+            <div class="mb-10">
+                <a href="/" class="inline-block mb-4 text-yp-red font-bold uppercase tracking-wider hover:underline">
+                    &larr; Back to Home
+                </a>
+                <br />
+                <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter inline-block border-b-8 border-yp-red pb-1">
+                    Campaigns
+                </h1>
+            </div>
             
             <div class="flex flex-col gap-8">
                 {campaignsPosts.length === 0 ? (
