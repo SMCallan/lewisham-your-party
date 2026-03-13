@@ -2,6 +2,7 @@
 title: "We Are Live: Welcome to the New Digital Home of Lewisham Your Party"
 category: Announcements
 date: 2026-03-13
+featured_image: /images/Your_Party_logo.svg
 ---
 The wait is over. Today, we are proud to launch the official, volunteer-built digital home for the Lewisham branch of Your Party. As the national central committee formally establishes our party structure, we know that the real work doesn't wait for bureaucracy. The fight for our community is happening right now, on the streets of Lewisham. We needed a dedicated hub to organize local campaigning, coordinate street action, and fight back against the gentrification pushing working people out of our borough. So, we built one ourselves.
 
