@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+// 1. Fetch all markdown files from the news folder
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
+
+// 2. Filter for Campaigns only and sort by date (newest first)
 const campaignsPosts = allNews
     .filter((post: any) => post.frontmatter.category === 'Campaigns')
-    // Hub: Most recently updated campaign first
     .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
 ---
 
@@ -12,45 +14,79 @@ const campaignsPosts = allNews
     <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
         <div class="max-w-4xl mx-auto mb-20 mt-8">
             
-            {/* --- STANDARDIZED PAGE HEADER --- */}
+            {/* --- PAGE HEADER --- */}
             <div class="mb-10">
-                <a href="/" class="inline-block mb-4 text-yp-red font-bold uppercase tracking-wider hover:underline">
+                <a href="/" class="inline-block mb-4 text-yp-red font-bold uppercase tracking-wider hover:underline transition-all">
                     &larr; Back to Home
                 </a>
                 <br />
                 <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter inline-block border-b-8 border-yp-red pb-1">
                     Campaigns
                 </h1>
+                <p class="text-xl mt-6 opacity-90 font-medium">
+                    Our active movements and community actions across Lewisham.
+                </p>
             </div>
             
-            <div class="flex flex-col gap-12">
+            {/* --- CAMPAIGN FEED --- */}
+            <div class="flex flex-col gap-16">
                 {campaignsPosts.length === 0 ? (
-                    <p class="text-xl opacity-80">No campaigns announced yet. Check back soon!</p>
+                    <div class="bg-white p-10 shadow-md border-l-8 border-gray-300">
+                        <p class="text-xl italic opacity-60">No campaigns announced yet. Check back soon!</p>
+                    </div>
                 ) : (
-                    campaignsPosts.map((post: any) => (
-                        <article class="bg-white p-6 md:p-10 shadow-lg border-l-8 border-yp-red relative">
-                            {post.frontmatter.featured_image && (
-                                <img 
-                                    src={post.frontmatter.featured_image} 
-                                    alt="" 
-                                    class="w-full h-64 md:h-[28rem] object-cover mb-8 shadow-sm"
-                                />
-                            )}
-                            
-                            <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-3 tracking-widest uppercase">
-                                <span>Updated: {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                {post.frontmatter.location && (
-                                    <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                    campaignsPosts.map((post: any) => {
+                        const hideHeader = post.frontmatter.hide_title === true;
+
+                        return (
+                            <article class="bg-white shadow-xl border-l-8 border-yp-red overflow-hidden transition-transform hover:shadow-2xl">
+                                
+                                {/* 1. MAIN IMAGE / FLYER */}
+                                {post.frontmatter.featured_image && (
+                                    <div class={hideHeader ? "p-0" : "px-0 pt-0"}>
+                                        <img 
+                                            src={post.frontmatter.featured_image} 
+                                            alt={post.frontmatter.title} 
+                                            class="w-full h-auto object-contain block"
+                                        />
+                                    </div>
                                 )}
-                            </div>
-                            
-                            <h2 class="text-4xl font-bold text-yp-slate mb-6">{post.frontmatter.title}</h2>
-                            
-                            <div class="prose prose-lg prose-slate max-w-none">
-                                <post.default />
-                            </div>
-                        </article>
-                    ))
+                                
+                                {/* 2. CONTENT AREA */}
+                                <div class="p-6 md:p-10">
+                                    
+                                    {/* Only show Title and Date if NOT hidden via CMS */}
+                                    {!hideHeader && (
+                                        <header class="mb-6">
+                                            <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-3 tracking-widest uppercase">
+                                                <span>Updated: {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                                {post.frontmatter.location && (
+                                                    <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                                                )}
+                                            </div>
+                                            <h2 class="text-4xl md:text-5xl font-bold text-yp-slate leading-tight">
+                                                {post.frontmatter.title}
+                                            </h2>
+                                        </header>
+                                    )}
+                                    
+                                    {/* PROSE AREA: Only renders if there is actual text in the markdown body */}
+                                    <div class="prose prose-lg prose-slate max-w-none">
+                                        <post.default />
+                                    </div>
+
+                                    {/* ARCHIVE TAG: Small reference for when headers are hidden */}
+                                    {hideHeader && (
+                                        <div class="mt-8 pt-4 border-t border-gray-100">
+                                            <p class="text-[10px] text-gray-300 uppercase tracking-widest font-bold">
+                                                Campaign Reference: {post.frontmatter.title} // {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                            </article>
+                        )
+                    })
                 )}
             </div>
         </div>
