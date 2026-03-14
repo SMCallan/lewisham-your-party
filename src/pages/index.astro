@@ -4,19 +4,21 @@ import Layout from '../layouts/Layout.astro';
 // 1. Fetch all the markdown posts from our news folder
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
 
-// 2. Create a "Today" variable that resets at midnight
+// 2. Create a "Today" variable
 const today = new Date();
 today.setHours(0, 0, 0, 0); 
 
-// 3. Filter out past events, then sort by closest date first
-const upcomingEvents = allNews
-    .filter((post: any) => new Date(post.frontmatter.date) >= today) // Removes anything older than today
-    .sort((a: any, b: any) => 
-        new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf() // Closest event goes to the top
-    );
+// 3. Separate posts into UPCOMING and PAST
+const upcomingEvents = allNews.filter((post: any) => new Date(post.frontmatter.date) >= today);
+const pastEvents = allNews.filter((post: any) => new Date(post.frontmatter.date) < today);
 
-// 4. Keep only the 3 most recent upcoming posts for the homepage feed
-const latestUpdates = upcomingEvents.slice(0, 3);
+// 4. Sort Upcoming (closest date first) AND Sort Past (most recent first)
+upcomingEvents.sort((a: any, b: any) => new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf());
+pastEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+
+// 5. Stitch them together and grab the top 3 for the homepage
+const combinedFeed = [...upcomingEvents, ...pastEvents];
+const latestUpdates = combinedFeed.slice(0, 3);
 ---
 
 <Layout title="Lewisham Your Party">
