@@ -4,13 +4,19 @@ import Layout from '../layouts/Layout.astro';
 // 1. Fetch all the markdown posts from our news folder
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
 
-// 2. Sort them by date (newest first)
-const sortedNews = allNews.sort((a: any, b: any) => 
-    new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
-);
+// 2. Create a "Today" variable that resets at midnight
+const today = new Date();
+today.setHours(0, 0, 0, 0); 
 
-// 3. Keep only the 3 most recent posts for the homepage feed
-const latestUpdates = sortedNews.slice(0, 3);
+// 3. Filter out past events, then sort by closest date first
+const upcomingEvents = allNews
+    .filter((post: any) => new Date(post.frontmatter.date) >= today) // Removes anything older than today
+    .sort((a: any, b: any) => 
+        new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf() // Closest event goes to the top
+    );
+
+// 4. Keep only the 3 most recent upcoming posts for the homepage feed
+const latestUpdates = upcomingEvents.slice(0, 3);
 ---
 
 <Layout title="Lewisham Your Party">
