@@ -79,9 +79,6 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                 {/* --- UPCOMING BUCKET --- */}
                 {upcomingEvents.length > 0 && (
                     <section>
-                        <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-8">
-                            Upcoming Actions
-                        </h3>
                         <div class="flex flex-col gap-6">
                             {upcomingEvents.map((post: any) => (
                                 <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">

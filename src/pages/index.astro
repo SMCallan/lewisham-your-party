@@ -8,7 +8,7 @@ const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: 
 const today = new Date();
 today.setHours(0, 0, 0, 0); 
 
-// 3. BUILD FEED 1: Upcoming Actions (Events & Street Action ONLY, must be >= today, closest first)
+// 3. BUILD FEED 1: Latest News (Events & Street Action ONLY, must be >= today, closest first)
 const upcomingActions = allNews
     .filter((post: any) => 
         (post.frontmatter.category === 'Events' || post.frontmatter.category === 'Street Action') && 
@@ -100,37 +100,56 @@ const latestAnnouncements = allNews
             </div>
 
             {/* --- DUAL FEED DASHBOARD --- */}
-            <div class="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-none">
+            <div class="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-none items-start">
                 
-                {/* COLUMN 1: UPCOMING ACTIONS */}
+                {/* COLUMN 1: LATEST NEWS (Events & Street Action) */}
                 <div>
-                    <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-8">Upcoming Actions</h3>
+                    <div class="mb-8">
+                        <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-1">Latest News</h3>
+                        <p class="text-sm text-black font-bold uppercase tracking-wider">Events & Street Action</p>
+                    </div>
+                    
                     <div class="flex flex-col gap-6">
-                        {upcomingActions.length > 0 ? upcomingActions.map((post: any) => (
-                            <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
-                                {post.frontmatter.category && (
-                                    <span class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase">
-                                        {post.frontmatter.category}
-                                    </span>
-                                )}
-                                
-                                {post.frontmatter.featured_image && (
-                                    <img src={post.frontmatter.featured_image} alt="" class="w-full h-48 object-cover mb-4 shadow-sm mt-4" />
-                                )}
-                                
-                                <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
-                                    <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                    {post.frontmatter.location && (
-                                        <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                        {upcomingActions.length > 0 ? upcomingActions.map((post: any) => {
+                            // Dynamically set the link depending on the category
+                            const categoryLink = post.frontmatter.category === 'Street Action' ? '/street-action' : '/events';
+                            
+                            return (
+                                <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
+                                    {post.frontmatter.category && (
+                                        <a href={categoryLink} class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-slate transition-colors">
+                                            {post.frontmatter.category}
+                                        </a>
                                     )}
-                                </div>
-                                
-                                <h4 class="text-xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h4>
-                                <div class="prose prose-sm prose-slate max-w-none line-clamp-3">
-                                    <post.default />
-                                </div>
-                            </article>
-                        )) : (
+                                    
+                                    {post.frontmatter.featured_image && (
+                                        <a href={categoryLink} class="block mt-4 mb-4">
+                                            <img src={post.frontmatter.featured_image} alt="" class="w-full h-48 object-cover shadow-sm hover:opacity-90 transition-opacity" />
+                                        </a>
+                                    )}
+                                    
+                                    <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
+                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                        {post.frontmatter.location && (
+                                            <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                                        )}
+                                    </div>
+                                    
+                                    <a href={categoryLink} class="group">
+                                        <h4 class="text-xl font-bold text-yp-slate mb-3 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                    </a>
+                                    
+                                    {/* Unclamped prose so the whole text shows */}
+                                    <div class="prose prose-sm prose-slate max-w-none">
+                                        <post.default />
+                                    </div>
+
+                                    <a href={categoryLink} class="inline-block mt-6 text-sm font-bold text-yp-red hover:text-yp-slate uppercase tracking-wider transition-colors border-b-2 border-yp-red hover:border-yp-slate pb-1">
+                                        Go to {post.frontmatter.category} page &rarr;
+                                    </a>
+                                </article>
+                            )
+                        }) : (
                             <p class="text-gray-500 italic">No upcoming actions scheduled right now. Check back soon!</p>
                         )}
                     </div>
@@ -138,28 +157,43 @@ const latestAnnouncements = allNews
 
                 {/* COLUMN 2: LATEST ANNOUNCEMENTS */}
                 <div>
-                    <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-8">Announcements</h3>
+                    <div class="mb-8">
+                        <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-1">Announcements</h3>
+                        {/* Invisible spacer so the headers line up perfectly across the two columns */}
+                        <p class="text-sm text-transparent select-none uppercase tracking-wider hidden md:block">&nbsp;</p>
+                    </div>
+
                     <div class="flex flex-col gap-6">
                         {latestAnnouncements.length > 0 ? latestAnnouncements.map((post: any) => (
                             <article class="bg-white p-6 shadow-md border-l-8 border-yp-slate relative">
                                 {post.frontmatter.category && (
-                                    <span class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase">
+                                    <a href="/announcements" class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-red transition-colors">
                                         {post.frontmatter.category}
-                                    </span>
+                                    </a>
                                 )}
                                 
                                 {post.frontmatter.featured_image && (
-                                    <img src={post.frontmatter.featured_image} alt="" class="w-full h-48 object-cover mb-4 shadow-sm mt-4" />
+                                    <a href="/announcements" class="block mt-4 mb-4">
+                                        <img src={post.frontmatter.featured_image} alt="" class="w-full h-48 object-cover shadow-sm hover:opacity-90 transition-opacity" />
+                                    </a>
                                 )}
                                 
                                 <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
                                     <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                 </div>
                                 
-                                <h4 class="text-xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h4>
-                                <div class="prose prose-sm prose-slate max-w-none line-clamp-3">
+                                <a href="/announcements" class="group">
+                                    <h4 class="text-xl font-bold text-yp-slate mb-3 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                </a>
+                                
+                                {/* Unclamped prose here too for consistency! */}
+                                <div class="prose prose-sm prose-slate max-w-none">
                                     <post.default />
                                 </div>
+
+                                <a href="/announcements" class="inline-block mt-6 text-sm font-bold text-yp-slate hover:text-yp-red uppercase tracking-wider transition-colors border-b-2 border-yp-slate hover:border-yp-red pb-1">
+                                    Go to Announcements page &rarr;
+                                </a>
                             </article>
                         )) : (
                             <p class="text-gray-500 italic">No recent announcements.</p>
