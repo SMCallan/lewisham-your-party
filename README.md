@@ -78,10 +78,7 @@ git push origin main
 
 ---
 
-## 🚧 Roadmap & TODOs
+## Admin Features
+- * Dedicated inbox - mail - @'s e.g. admin@lewishamyourpart.org.uk
+- * Script - automated system to read contact forms, adds to a spreasheet, sends thank you email 
 
-As our grassroots movement grows, the digital infrastructure needs to grow with it. Here are the immediate next steps being worked on for the site:
-
-- [ ] **Google Sheets Automation:** Route Web3Forms signups to automatically populate a dedicated, secure Google Sheet for the organizing team.
-- [ ] **Expand Data Collection:** Update the HTML form to capture standard political data points alongside the email address (e.g., First Name, Last Name, Postcode).
-- [ ] **Dedicated Admin Emails:** Set up official `@lewishamyourparty.org.uk` email routing for the head organizer, media officer, etc.
