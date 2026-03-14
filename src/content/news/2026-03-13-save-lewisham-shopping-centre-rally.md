@@ -11,8 +11,6 @@ featured_image: /media/side A march copy.jpg
 
 ### STOP GENTRIFICATION, ORGANISE FOR SOCIAL HOUSING
 
-We are hoping to get out biggest crowd yet to show Lewisham council that the movement for anti-gentrification and affordable housing is serious!  
-  
-We need as many people as possible to get involved in making this a good turnout.
+### We need as many people as possible to get involved in making this a good turnout to show Lewisham council that the movement for anti-gentrification and affordable housing is not going away.
 
 Assemble at the Lewisham Clock Tower at 2PM for a march and rally to stop social cleansing in Lewisham.
