@@ -3,43 +3,68 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About & FAQs - Lewisham Your Party">
-<main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
-<div class="max-w-3xl mx-auto bg-white p-8 md:p-12 shadow-xl border-t-8 border-yp-red mb-20">
-<a href="/" class="inline-block mb-8 text-yp-red font-bold uppercase tracking-wider hover:underline">
-&larr; Back to Home
-</a>
-<h1 class="text-4xl md:text-5xl font-heading uppercase tracking-tighter mb-6">About Us</h1>
-<div class="space-y-6 text-lg opacity-90">
-<p>We are the Lewisham proto-branch of Your Party. We are a grassroots movement of local residents, campaigners, and volunteers organizing to fight against gentrification and stand for homes for people, not profit.</p>
-<p>While the central committee is formally establishing the national party structure, we are actively building momentum on the streets of Lewisham.</p>
-</div>
+    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
+        <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 shadow-xl border-t-8 border-yp-red mb-20">
+            
+            <a href="/" class="inline-block mb-8 text-yp-red font-bold uppercase tracking-wider hover:underline">
+                &larr; Back to Home
+            </a>
+            
+            <h1 class="text-4xl md:text-5xl font-heading uppercase tracking-tighter mb-6">About Us</h1>
+            
+            <div class="space-y-6 text-lg opacity-90 leading-relaxed">
+                <p>
+                    We are the Lewisham proto-branch of <strong>Your Party</strong>. We are a grassroots movement of local residents, campaigners, and volunteers organizing to fight against gentrification and stand for homes for people, not profit.
+                </p>
+                <p>
+                    While the central committee is formally establishing the national party structure, we are actively building power and momentum on the streets of Lewisham.
+                </p>
 
-<hr class="my-10 border-gray-300" />
+                <div class="pt-6 pb-2">
+                    <h2 class="text-2xl font-heading uppercase border-b-4 border-yp-red inline-block mb-6">What We Stand For</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {[
+                            { name: 'Housing', desc: 'Radical housing justice & social rent for all.' },
+                            { name: 'Education', desc: 'Free school meals & universal nursery provision.' },
+                            { name: 'No Cuts', desc: 'Protecting public services from private profit.' },
+                            { name: 'Anti-Racism', desc: 'Strengthening our Sanctuary Borough status.' },
+                            { name: 'Palestine', desc: 'Unwavering international solidarity.' }
+                        ].map((pillar) => (
+                            <div class="bg-yp-slate text-white p-4 transition-all border-l-4 border-transparent hover:border-yp-slate hover:bg-yp-red cursor-default group">
+                                <span class="block font-bold uppercase tracking-tighter text-sm mb-1">{pillar.name}</span>
+                                <span class="block text-xs opacity-80 group-hover:opacity-100">{pillar.desc}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-<h2 class="text-3xl font-heading uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+                <hr class="mt-12 mb-10 border-0 h-2 bg-yp-red w-full" />
+            </div>
 
-<div class="space-y-8">
-<div>
-<h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">How do I join?</h3>
-<p class="opacity-90">The easiest way is to use the signup form on our homepage. When you submit it, your email is securely shared with our local Lewisham organizing team so we can invite you to local events. You will then be automatically redirected to the national Your Party website, where you can complete your official, formal membership.</p>
-</div>
+            <h2 class="text-3xl font-heading uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
 
-<div>
-<h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">How do I get involved locally?</h3>
-<p class="opacity-90">We are always looking for people to help deliver leaflets, run street stalls, or help with digital organizing. Check the "Events" or "Street Action" feeds on our homepage to see where we will be next, or just reply to one of our newsletter emails to say hello!</p>
-</div>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">How do I join?</h3>
+                    <p class="opacity-90">The easiest way is to use the signup form on our homepage. When you submit it, your email is securely shared with our local Lewisham organizing team so we can invite you to local events. You will then be automatically redirected to the national Your Party website, where you can complete your official, formal membership.</p>
+                </div>
 
-<div>
-<h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">Do I have to pay to get involved here?</h3>
-<p class="opacity-90">No! Volunteering your time locally in Lewisham is completely free. If you choose to become an official, card-carrying member of Your Party, any membership fees or donations are handled entirely through the national party's secure portal.</p>
-</div>
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">How do I get involved locally?</h3>
+                    <p class="opacity-90">We are always looking for people to help deliver leaflets, run street stalls, or help with digital organizing. Check the "Events" or "Street Action" feeds on our homepage to see where we will be next, or just reply to one of our newsletter emails to say hello!</p>
+                </div>
 
-<div>
-<h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">Who runs this website?</h3>
-<p class="opacity-90">This site is built and maintained entirely by local Lewisham volunteers. We use a free, open-source tech stack to ensure our movement stays lean, cost-effective, and focused on community action rather than digital overhead.</p>
-</div>
-</div>
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">Do I have to pay to get involved here?</h3>
+                    <p class="opacity-90">No! Volunteering your time locally in Lewisham is completely free. If you choose to become an official, card-carrying member of Your Party, any membership fees or donations are handled entirely through the national party's secure portal.</p>
+                </div>
 
-</div>
-</main>
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider text-yp-red mb-2">Who runs this website?</h3>
+                    <p class="opacity-90">This site is built and maintained entirely by local Lewisham volunteers. We use a free, open-source tech stack to ensure our movement stays lean, cost-effective, and focused on community action rather than digital overhead.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
 </Layout>
