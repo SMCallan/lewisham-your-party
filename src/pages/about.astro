@@ -22,17 +22,32 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="pt-6 pb-2">
                     <h2 class="text-2xl font-heading uppercase border-b-4 border-yp-red inline-block mb-6">What We Stand For</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {[
-                            { name: 'Housing', desc: 'Radical housing justice & social rent for all.' },
-                            { name: 'Education', desc: 'Free school meals & universal nursery provision.' },
-                            { name: 'No Cuts', desc: 'Protecting public services from private profit.' },
-                            { name: 'Anti-Racism', desc: 'Strengthening our Sanctuary Borough status.' },
-                            { name: 'Palestine', desc: 'Unwavering international solidarity.' }
+                            { 
+                                name: 'Housing', 
+                                desc: 'Fighting against gentrification and campaigning for radical housing justice. We demand better living conditions, higher housing standards, and social rent for all.' 
+                            },
+                            { 
+                                name: 'Education', 
+                                desc: 'Securing better resources for our youth, including universal free school meals and comprehensive nursery provision for every family.' 
+                            },
+                            { 
+                                name: 'No Cuts', 
+                                desc: 'Protecting our vital public services from being sold off for private profit. We will never vote for austerity or cuts that hurt our residents.' 
+                            },
+                            { 
+                                name: 'Anti-Racism', 
+                                desc: 'Strengthening our Sanctuary Borough status. We are anti-racist, anti-fascist, and fight for true equity and equality across every neighborhood.' 
+                            },
+                            { 
+                                name: 'Palestine', 
+                                desc: 'Standing in unwavering international solidarity. We demand that the council completely divest from military manufacturing and companies complicit in genocide.' 
+                            }
                         ].map((pillar) => (
-                            <div class="bg-yp-slate text-white p-4 transition-all border-l-4 border-transparent hover:border-yp-slate hover:bg-yp-red cursor-default group">
-                                <span class="block font-bold uppercase tracking-tighter text-sm mb-1">{pillar.name}</span>
-                                <span class="block text-xs opacity-80 group-hover:opacity-100">{pillar.desc}</span>
+                            <div class="bg-yp-slate text-white p-5 transition-all border-l-4 border-transparent hover:border-yp-slate hover:bg-yp-red cursor-default group">
+                                <span class="block font-bold uppercase tracking-tighter text-lg mb-2">{pillar.name}</span>
+                                <span class="block text-sm opacity-80 group-hover:opacity-100 leading-relaxed">{pillar.desc}</span>
                             </div>
                         ))}
                     </div>
