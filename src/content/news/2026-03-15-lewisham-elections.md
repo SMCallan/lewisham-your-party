@@ -1,6 +1,6 @@
 ---
 title: Lewisham Elections
-category: Announcements
+category: Campaigns
 hide_title: true
 date: 2026-05-07
 location: Lewisham
