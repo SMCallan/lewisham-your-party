@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 // 1. Fetch posts and filter ONLY for "Street Action"
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }))
-    .filter((post: any) => post.frontmatter.category === 'Street Action'); 
+    .filter((post: any) => post.frontmatter.category === 'Street Action');
 
 // 2. Define Date Boundaries
 const now = new Date();
@@ -26,8 +26,8 @@ const legacyEvents = allNews.filter((post: any) => {
 });
 
 // 4. Sort the buckets
-upcomingEvents.sort((a: any, b: any) => new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf()); 
-legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()); 
+upcomingEvents.sort((a: any, b: any) => new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf());
+legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
 ---
 
 <Layout title="Street Action - Lewisham Your Party">
@@ -50,7 +50,7 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                         <div class="flex flex-col gap-6">
                             {presentEvents.map((post: any) => (
                                 <article class="bg-white p-6 md:p-8 shadow-lg border-l-8 border-yp-red border-t-4 border-t-yp-red relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-64 md:h-96 object-cover mb-6 shadow-sm" />}
+                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />}
                                     <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
                                         <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                         {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
@@ -69,7 +69,7 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                         <div class="flex flex-col gap-6">
                             {upcomingEvents.map((post: any) => (
                                 <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-64 md:h-96 object-cover mb-6 shadow-sm" />}
+                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />}
                                     <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
                                         <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                         {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
@@ -89,7 +89,7 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                         <div class="flex flex-col gap-6">
                             {legacyEvents.map((post: any) => (
                                 <article class="bg-gray-50 p-6 shadow-sm border-l-8 border-gray-300 relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-48 md:h-64 object-cover mb-4 opacity-90 grayscale-[20%]" />}
+                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-4 opacity-90 grayscale-[20%]" />}
                                     <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase mt-2">
                                         <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                         {post.frontmatter.location && <span class="flex items-center gap-1">📍 {post.frontmatter.location}</span>}
