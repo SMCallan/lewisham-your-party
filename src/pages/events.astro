@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }))
     .filter((post: any) => post.frontmatter.category === 'Events');
 
-// 2. Define Date Boundaries (Midnight today, and Midnight tomorrow)
+// 2. Define Date Boundaries
 const now = new Date();
 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 const tomorrow = new Date(today);
@@ -13,29 +13,29 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 
 // 3. Bucket the posts
 const presentEvents = allNews.filter((post: any) => {
-    const postDate = new Date(post.frontmatter.date);
-    return postDate >= today && postDate < tomorrow;
+    const startDate = new Date(post.frontmatter.date);
+    const endDate = post.frontmatter.end_date ? new Date(post.frontmatter.end_date) : startDate;
+    return startDate <= today && endDate >= today;
 });
+
 const upcomingEvents = allNews.filter((post: any) => {
-    const postDate = new Date(post.frontmatter.date);
-    return postDate >= tomorrow;
+    const startDate = new Date(post.frontmatter.date);
+    return startDate >= tomorrow;
 });
+
 const legacyEvents = allNews.filter((post: any) => {
-    const postDate = new Date(post.frontmatter.date);
-    return postDate < today;
+    const endDate = post.frontmatter.end_date ? new Date(post.frontmatter.end_date) : new Date(post.frontmatter.date);
+    return endDate < today;
 });
 
 // 4. Sort the buckets
-// Upcoming: Closest first
 upcomingEvents.sort((a: any, b: any) => new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf());
-// Legacy: Most recent past event first
 legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
 ---
 
 <Layout title="Events - Lewisham Your Party">
     <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
         <div class="max-w-4xl mx-auto mt-8">
-            {/* --- STANDARDIZED PAGE HEADER --- */}
             <div class="mb-10">
                 <a href="/" class="inline-block mb-4 text-yp-red font-bold uppercase tracking-wider hover:underline">
                     &larr; Back to Home
@@ -63,7 +63,10 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                                         <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />
                                     )}
                                     <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                        <span>
+                                            {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
+                                            {post.frontmatter.end_date && ` - ${new Date(post.frontmatter.end_date).toLocaleDateString('en-GB')}`}
+                                        </span>
                                         {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
                                     </div>
                                     <h2 class="text-3xl font-bold text-yp-slate mb-4">{post.frontmatter.title}</h2>
@@ -84,7 +87,10 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                                         <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />
                                     )}
                                     <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                        <span>
+                                            {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
+                                            {post.frontmatter.end_date && ` - ${new Date(post.frontmatter.end_date).toLocaleDateString('en-GB')}`}
+                                        </span>
                                         {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
                                     </div>
                                     <h2 class="text-2xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h2>
@@ -108,7 +114,10 @@ legacyEvents.sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - n
                                         <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-4 opacity-90 grayscale-[20%]" />
                                     )}
                                     <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase mt-2">
-                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                        <span>
+                                            {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
+                                            {post.frontmatter.end_date && ` - ${new Date(post.frontmatter.end_date).toLocaleDateString('en-GB')}`}
+                                        </span>
                                         {post.frontmatter.location && <span class="flex items-center gap-1">📍 {post.frontmatter.location}</span>}
                                     </div>
                                     <h2 class="text-xl font-bold text-gray-600 mb-3">{post.frontmatter.title}</h2>
