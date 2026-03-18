@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Thank You - Lewisham Your Party">
+    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16 flex items-center justify-center">
+        
+        <div class="max-w-2xl mx-auto bg-yp-slate text-white p-8 md:p-12 shadow-xl text-center border-t-8 border-yp-red">
+            <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter mb-4 text-yp-cream">
+                Welcome Aboard!
+            </h1>
+            <h2 class="text-2xl font-bold mb-4 text-yp-red">You are on the local list.</h2>
+            
+            <div class="w-16 h-1 bg-yp-red mx-auto mb-6"></div>
+            
+            <p class="text-lg mb-8 opacity-90 leading-relaxed">
+                Thank you for confirming you are already a national member. We have successfully added your details to the local Lewisham organizing list. <br><br>
+                Keep an eye on your inbox for our upcoming newsletters, campaign updates, and street action details.
+            </p>
+            
+            <div class="flex flex-col gap-4 sm:px-8">
+                {/* Using your exact transparent outline button style for consistency */}
+                <a href="/" class="block w-full bg-transparent border-2 border-white text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-white hover:text-yp-slate transition-colors cursor-pointer text-center">
+                    Return to Lewisham Home
+                </a>
+            </div>
+            
+        </div>
+
+    </main>
+</Layout>
