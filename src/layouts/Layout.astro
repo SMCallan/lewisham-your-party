@@ -24,6 +24,48 @@ import '../styles/global.css';
     
     <body class="bg-yp-cream flex flex-col min-h-screen">
         
+        <header class="pt-8 md:pt-16 pb-0">
+            <div class="max-w-4xl mx-auto px-8 md:px-16">
+                <a href="/" class="block hover:opacity-90 transition-opacity">
+                    <h1 class="text-6xl md:text-8xl font-heading text-yp-slate uppercase tracking-tighter mb-4">
+                        Lewisham <span class="text-yp-red">Your Party</span>
+                    </h1>
+                </a>
+
+                {/* --- UNIFIED NAVIGATION MENU --- */}
+                <nav class="mt-8 mb-8 border-4 border-yp-slate shadow-[5px_5px_0_0_rgba(34,56,63,1)] md:shadow-[10px_10px_0_0_rgba(34,56,63,1)] overflow-hidden">
+                    {/* ROW 1: PRIMARY LINKS */}
+                    <div class="grid grid-cols-1 md:grid-cols-3 divide-y-4 md:divide-y-0 md:divide-x-4 divide-yp-slate border-b-4 border-yp-slate bg-white">
+                        <a href="/about" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
+                            ABOUT & FAQS
+                        </a>
+                        <a href="/#join-mailing-list" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
+                            JOIN MAILING LIST
+                        </a>
+                        <a href="https://yourparty.uk" target="_blank" rel="noopener noreferrer" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
+                            NATIONAL SITE
+                        </a>
+                    </div>
+
+                    {/* ROW 2: CATEGORY FILTERS */}
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-[4px] md:gap-0 md:divide-x-4 divide-yp-slate bg-yp-slate">
+                        <a href="/events" class="p-4 bg-yp-red text-center font-bold uppercase tracking-widest text-xs md:text-sm text-white hover:bg-yp-slate transition-all">
+                            Events
+                        </a>
+                        <a href="/street-action" class="p-4 bg-yp-red text-center font-bold uppercase tracking-widest text-xs md:text-sm text-white hover:bg-yp-slate transition-all">
+                            Street Action
+                        </a>
+                        <a href="/announcements" class="p-4 bg-yp-red text-center font-bold uppercase tracking-widest text-xs md:text-sm text-white hover:bg-yp-slate transition-all">
+                            Announcements
+                        </a>
+                        <a href="/campaigns" class="p-4 bg-yp-red text-center font-bold uppercase tracking-widest text-xs md:text-sm text-white hover:bg-yp-slate transition-all">
+                            Campaigns
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
         <div class="flex-grow">
             <slot />
         </div>

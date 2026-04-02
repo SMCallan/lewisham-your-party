@@ -25,121 +25,15 @@ const latestAnnouncements = allNews
 ---
 
 <Layout title="Lewisham Your Party">
-    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16">
+    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16 pt-0 md:pt-0">
         
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-6xl md:text-8xl font-heading text-yp-slate uppercase tracking-tighter mb-4">
-                Lewisham <span class="text-yp-red">Your Party</span>
-            </h1>
             
-            <div class="bg-yp-slate text-white p-8 md:p-12 mt-8 shadow-xl">
+            <div class="bg-yp-slate text-white p-8 md:p-12 shadow-xl">
                 <h2 class="text-3xl font-bold mb-4">We're building a new kind of political party.</h2>
-                <p class="text-lg mb-8 opacity-90">
+                <p class="text-lg mb-0 opacity-90">
                     We are building a new kind of political party! One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From 'Sanctuary Borough' protections to universal free school meals, we are fighting for a local government that puts residents before profit.
                 </p>
-                
-                {/* --- SMART SIGNUP FORM --- */}
-                <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl" id="signup-form">
-                    <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
-                    
-                    {/* The redirect value here will be changed by the script below if they click "Yes" */}
-                    <input type="hidden" name="redirect" id="form-redirect" value="https://lewishamyourparty.org.uk/success" />
-                    <input type="hidden" name="subject" value="New Member Signup - Lewisham YP" />
-                    <input type="hidden" name="from_name" value="Lewisham YP Website" />
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                        <input type="text" name="First Name" placeholder="First Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
-                        <input type="text" name="Last Name" placeholder="Last Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
-                        <input type="text" name="Postcode" placeholder="Postcode *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full uppercase" />
-                        <input type="tel" name="Phone" placeholder="Phone (Optional)" class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input 
-                            type="email" 
-                            placeholder="Enter your email *" 
-                            name="email" 
-                            required
-                            class="flex-grow p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full"
-                        />
-                        <button 
-                            type="submit" 
-                            class="bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer whitespace-nowrap"
-                        >
-                            JOIN THE BRANCH
-                        </button>
-                    </div>
-
-                    {/* --- MEMBER CHECK (CUSTOM TOGGLES) --- */}
-                    <div class="mt-6 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/20 pt-5">
-                        <p class="text-sm font-bold opacity-90">Are you already a national member?</p>
-                        
-                        <div class="flex gap-2">
-                            <label class="relative cursor-pointer group">
-                                {/* 'sr-only' hides the default circle, 'peer' lets us style the span below it */}
-                                <input type="radio" name="Already National Member" value="Yes" class="member-toggle sr-only peer" />
-                                <span class="block px-4 py-2 bg-white/10 text-xs font-bold uppercase tracking-wider text-white peer-checked:bg-yp-red peer-checked:text-white hover:bg-white/20 transition-colors">
-                                    Yes, I am
-                                </span>
-                            </label>
-                            
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="Already National Member" value="No" class="member-toggle sr-only peer" checked />
-                                <span class="block px-4 py-2 bg-white/10 text-xs font-bold uppercase tracking-wider text-white peer-checked:bg-yp-red peer-checked:text-white hover:bg-white/20 transition-colors">
-                                    No, not yet
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 flex items-start gap-3 text-sm opacity-90">
-                        <input type="checkbox" id="consent" name="gdpr_consent" required class="mt-1 w-4 h-4 cursor-pointer" />
-                        <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP. See our <a href="/privacy-notice" class="underline hover:text-yp-red">Privacy Notice</a>.</label>
-                    </div>
-                    <p class="text-xs opacity-60 mt-2 italic">*After clicking submit, you will be securely redirected to the appropriate confirmation page.</p>
-                </form>
-
-                {/* --- ASTRO CLIENT SCRIPT FOR DYNAMIC REDIRECT --- */}
-                <script>
-                    const radios = document.querySelectorAll('.member-toggle');
-                    const redirectInput = document.getElementById('form-redirect') as HTMLInputElement;
-
-                    radios.forEach(radio => {
-                        radio.addEventListener('change', (e) => {
-                            const target = e.target as HTMLInputElement;
-                            if (target.value === 'Yes') {
-                                // If they are a member, send them to the local-only thank you page
-                                redirectInput.value = "https://lewishamyourparty.org.uk/success-local";
-                            } else {
-                                // If they are NOT a member, send them to the page that tells them to join the national party
-                                redirectInput.value = "https://lewishamyourparty.org.uk/success";
-                            }
-                        });
-                    });
-                </script>
-            </div>
-            
-            <div class="mt-10 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
-                
-                {/* --- BIG TEXT NAVIGATION LINKS --- */}
-                <div class="flex gap-6 items-center">
-                    <a href="/about" class="text-3xl font-heading uppercase text-yp-slate hover:text-yp-red transition-colors tracking-wide underline decoration-4 underline-offset-4 decoration-transparent hover:decoration-yp-red">
-                        ABOUT & FAQS
-                    </a>
-                    
-                    <a href="https://yourparty.uk" target="_blank" rel="noopener noreferrer" class="text-3xl font-heading uppercase text-yp-slate hover:text-yp-red transition-colors tracking-wide underline decoration-4 underline-offset-4 decoration-transparent hover:decoration-yp-red">
-                        NATIONAL SITE
-                    </a>
-                </div>
-
-                {/* --- FEED FILTER TAGS --- */}
-                <div class="flex gap-3 flex-wrap font-bold text-sm uppercase">
-                    <a href="/events" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Events</a>
-                    <a href="/street-action" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Street Action</a>
-                    <a href="/announcements" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Announcements</a>
-                    <a href="/campaigns" class="bg-yp-red text-white px-3 py-1.5 hover:bg-yp-slate transition-colors cursor-pointer">Campaigns</a>
-                </div>
-                
             </div>
 
             {/* --- DUAL FEED DASHBOARD --- */}
@@ -244,6 +138,93 @@ const latestAnnouncements = allNews
                     </div>
                 </div>
 
+            </div>
+
+            {/* --- SMART SIGNUP FORM (MOVED TO BOTTOM) --- */}
+            <div id="join-mailing-list" class="bg-yp-slate text-white p-8 md:p-12 mt-20 mb-20 shadow-xl scroll-mt-10">
+                <h2 class="text-3xl font-bold mb-4">Join our Mailing List</h2>
+                <p class="text-lg mb-8 opacity-90">
+                    Stay updated with our latest campaigns, events, and community action in Lewisham.
+                </p>
+
+                <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl" id="signup-form">
+                    <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
+                    
+                    {/* The redirect value here will be changed by the script below if they click "Yes" */}
+                    <input type="hidden" name="redirect" id="form-redirect" value="https://lewishamyourparty.org.uk/success" />
+                    <input type="hidden" name="subject" value="New Member Signup - Lewisham YP" />
+                    <input type="hidden" name="from_name" value="Lewisham YP Website" />
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <input type="text" name="First Name" placeholder="First Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                        <input type="text" name="Last Name" placeholder="Last Name *" required class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                        <input type="text" name="Postcode" placeholder="Postcode (Optional)" class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                        <input type="tel" name="Phone" placeholder="Phone (Optional)" class="p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full" />
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email *" 
+                            name="email" 
+                            required
+                            class="flex-grow p-4 bg-white text-yp-slate font-sans focus:outline-none focus:ring-2 focus:ring-yp-red w-full"
+                        />
+                        <button 
+                            type="submit" 
+                            class="bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer whitespace-nowrap"
+                        >
+                            JOIN THE BRANCH
+                        </button>
+                    </div>
+
+                    {/* --- MEMBER CHECK (CUSTOM TOGGLES) --- */}
+                    <div class="mt-6 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/20 pt-5">
+                        <p class="text-sm font-bold opacity-90">Are you already a national member?</p>
+                        
+                        <div class="flex gap-2">
+                            <label class="relative cursor-pointer group">
+                                {/* 'sr-only' hides the default circle, 'peer' lets us style the span below it */}
+                                <input type="radio" name="Already National Member" value="Yes" class="member-toggle sr-only peer" />
+                                <span class="block px-4 py-2 bg-white/10 text-xs font-bold uppercase tracking-wider text-white peer-checked:bg-yp-red peer-checked:text-white hover:bg-white/20 transition-colors">
+                                    Yes, I am
+                                </span>
+                            </label>
+                            
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="Already National Member" value="No" class="member-toggle sr-only peer" checked />
+                                <span class="block px-4 py-2 bg-white/10 text-xs font-bold uppercase tracking-wider text-white peer-checked:bg-yp-red peer-checked:text-white hover:bg-white/20 transition-colors">
+                                    No, not yet
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex items-start gap-3 text-sm opacity-90">
+                        <input type="checkbox" id="consent" name="gdpr_consent" required class="mt-1 w-4 h-4 cursor-pointer" />
+                        <label for="consent" class="cursor-pointer">I consent to receiving local updates from Lewisham YP. See our <a href="/privacy-notice" class="underline hover:text-yp-red">Privacy Notice</a>.</label>
+                    </div>
+                    <p class="text-xs opacity-60 mt-2 italic">*After clicking submit, you will be securely redirected to the appropriate confirmation page.</p>
+                </form>
+
+                {/* --- ASTRO CLIENT SCRIPT FOR DYNAMIC REDIRECT --- */}
+                <script>
+                    const radios = document.querySelectorAll('.member-toggle');
+                    const redirectInput = document.getElementById('form-redirect') as HTMLInputElement;
+
+                    radios.forEach(radio => {
+                        radio.addEventListener('change', (e) => {
+                            const target = e.target as HTMLInputElement;
+                            if (target.value === 'Yes') {
+                                // If they are a member, send them to the local-only thank you page
+                                redirectInput.value = "https://lewishamyourparty.org.uk/success-local";
+                            } else {
+                                // If they are NOT a member, send them to the page that tells them to join the national party
+                                redirectInput.value = "https://lewishamyourparty.org.uk/success";
+                            }
+                        });
+                    });
+                </script>
             </div>
 
         </div>
