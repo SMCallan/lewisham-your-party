@@ -68,36 +68,29 @@ const dateStamp = new Date().toLocaleDateString('en-GB', {
                             const categoryLink = post.frontmatter.category === 'Street Action' ? '/street-action' : '/events';
                             
                             return (
-                                <article class="flex flex-col h-full bg-white border-4 border-yp-red shadow-[5px_5px_0_0_#22383f] relative">
-                                    {/* HEADER ZONE */}
-                                    <div class="p-6 border-b-4 border-yp-red bg-yp-cream relative">
-                                        {post.frontmatter.category && (
-                                            <a href={categoryLink} class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-slate transition-colors">
-                                                {post.frontmatter.category}
-                                            </a>
-                                        )}
-                                        
-                                        <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
-                                            <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                            {post.frontmatter.location && (
-                                                <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
-                                            )}
-                                        </div>
-                                        
-                                        <a href={categoryLink} class="group">
-                                            <h4 class="text-xl font-bold uppercase tracking-widest leading-tight text-yp-slate mb-0 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                <article class="flex flex-col h-full bg-white border-4 border-yp-red shadow-[5px_5px_0_0_#22383f] relative p-8">
+                                    {post.frontmatter.category && (
+                                        <a href={categoryLink} class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-slate transition-colors">
+                                            {post.frontmatter.category}
                                         </a>
+                                    )}
+                                    
+                                    <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
+                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                        {post.frontmatter.location && (
+                                            <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                                        )}
                                     </div>
                                     
-                                    {/* BODY ZONE */}
-                                    <div class="p-6 flex-grow bg-white">
-                                        <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mt-0 mb-0 opacity-90">
-                                            {post.frontmatter.synopsis}
-                                        </p>
-                                    </div>
+                                    <a href={categoryLink} class="group">
+                                        <h4 class="text-xl font-bold uppercase tracking-widest leading-tight text-yp-slate mb-4 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                    </a>
+                                    
+                                    <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mb-8 opacity-90 flex-grow">
+                                        {post.frontmatter.synopsis}
+                                    </p>
 
-                                    {/* FOOTER ZONE (BUTTON) */}
-                                    <a href={categoryLink} class="block w-full text-center p-4 bg-yp-red text-white font-bold uppercase tracking-widest border-t-4 border-yp-red hover:bg-yp-slate transition-colors">
+                                    <a href={categoryLink} class="text-sm font-bold text-yp-red hover:text-yp-slate uppercase tracking-widest transition-colors self-end">
                                         VIEW DETAILS ➔
                                     </a>
                                 </article>
@@ -116,33 +109,26 @@ const dateStamp = new Date().toLocaleDateString('en-GB', {
 
                     <div class="flex flex-col gap-6">
                         {latestAnnouncements.length > 0 ? latestAnnouncements.map((post: any) => (
-                            <article class="flex flex-col h-full bg-white border-4 border-yp-slate shadow-[5px_5px_0_0_#ea433b] relative">
-                                {/* HEADER ZONE */}
-                                <div class="p-6 border-b-4 border-yp-slate bg-yp-cream relative">
-                                    {post.frontmatter.category && (
-                                        <a href="/announcements" class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-red transition-colors">
-                                            {post.frontmatter.category}
-                                        </a>
-                                    )}
-                                    
-                                    <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
-                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                    </div>
-                                    
-                                    <a href="/announcements" class="group">
-                                        <h4 class="text-xl font-bold text-yp-slate mb-0 group-hover:text-yp-red transition-colors uppercase tracking-widest leading-tight">{post.frontmatter.title}</h4>
+                            <article class="flex flex-col h-full bg-white border-4 border-yp-slate shadow-[5px_5px_0_0_#ea433b] relative p-8">
+                                {post.frontmatter.category && (
+                                    <a href="/announcements" class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-red transition-colors">
+                                        {post.frontmatter.category}
                                     </a>
+                                )}
+                                
+                                <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
+                                    <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                 </div>
                                 
-                                {/* BODY ZONE */}
-                                <div class="p-6 flex-grow bg-white">
-                                    <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mt-0 mb-0 opacity-90">
-                                        {post.frontmatter.synopsis}
-                                    </p>
-                                </div>
+                                <a href="/announcements" class="group">
+                                    <h4 class="text-xl font-bold text-yp-slate uppercase tracking-widest leading-tight mb-4 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                </a>
+                                
+                                <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mb-8 opacity-90 flex-grow">
+                                    {post.frontmatter.synopsis}
+                                </p>
 
-                                {/* FOOTER ZONE (BUTTON) */}
-                                <a href="/announcements" class="block w-full text-center p-4 bg-yp-slate text-white font-bold uppercase tracking-widest border-t-4 border-yp-slate hover:bg-yp-red transition-colors">
+                                <a href="/announcements" class="text-sm font-bold text-yp-slate hover:text-yp-red uppercase tracking-widest transition-colors self-end">
                                     VIEW DETAILS ➔
                                 </a>
                             </article>
