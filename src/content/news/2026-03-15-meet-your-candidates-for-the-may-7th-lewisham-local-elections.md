@@ -5,6 +5,7 @@ hide_title: false
 date: 2026-05-07
 location: Lewisham
 featured_image: /media/24b2fd23-ff5b-4aa7-9e42-27ba98279acf.jpeg
+synopsis: Meet Davis St Marthe, Dan Ansell, and Callum Carter—our dedicated local candidates running for real change in Lewisham this May.
 ---
 **On Thursday, May 7th, 2026, the people of Lewisham will have the chance to vote for real, grassroots change.**
 

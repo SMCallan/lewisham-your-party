@@ -4,6 +4,7 @@ category: Events
 date: 2026-03-28
 location: Park Lane
 featured_image: /media/HC9D5vnWgAEi-AK.jpg
+synopsis: Join the Together Alliance national march on March 28 starting at Park Lane to stand against the hate and division of the far right.
 ---
 # MARCH TOGETHER AGAINST THE FAR RIGHT
 

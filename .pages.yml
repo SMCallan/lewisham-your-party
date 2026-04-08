@@ -36,6 +36,10 @@ content:
       - name: location
         label: Location (Optional)
         type: string
+      - name: synopsis
+        label: Article Synopsis (Max 150 chars)
+        type: string
+        required: true
       - name: featured_image
         label: Featured Image
         type: image

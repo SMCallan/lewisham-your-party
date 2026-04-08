@@ -4,6 +4,7 @@ category: Events
 date: 2026-04-16
 location: Fox & Firkin, SE13 6JZ
 featured_image: /media/VIVA CUBA!(1).png
+synopsis: Join our fundraiser on April 16 at Fox & Firkin to raise funds for medical supplies for Cuba with Latin music, a raffle, and a political rally.
 ---
 # Viva Cuba!
 

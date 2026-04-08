@@ -5,6 +5,7 @@ hide_title: false
 date: 2026-03-13
 end_date: 2026-04-01
 featured_image: /media/LewishamYP.png
+synopsis: Welcome to the new volunteer-built digital home of Lewisham Your Party, a dedicated hub for local campaigning, street action, and community organizing.
 ---
 The wait is over. Today, we are proud to launch the official, volunteer-built digital home for the Lewisham branch of Your Party. As the national central committee formally establishes our party structure, we know that the real work doesn't wait for bureaucracy. The fight for our community is happening right now, on the streets of Lewisham. We needed a dedicated hub to organize local campaigning, coordinate street action, and fight back against the gentrification pushing working people out of our borough. So, we built one ourselves.
 

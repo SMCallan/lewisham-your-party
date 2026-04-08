@@ -4,6 +4,7 @@ category: Events
 date: 2026-03-21
 location: Central London, TBD
 featured_image: /media/HDN30TgXIAANUav.jpg
+synopsis: Attend the national demonstration in Central London on March 21 to call for an end to the bombing of Iran and support for Palestine.
 ---
 # STOP BOMBING IRAN
 

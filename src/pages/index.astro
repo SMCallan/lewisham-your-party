@@ -22,6 +22,14 @@ const latestAnnouncements = allNews
     .filter((post: any) => post.frontmatter.category === 'Announcements')
     .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
     .slice(0, 3); // Grab top 3
+
+// 5. BROADSTREET DATE STAMP
+const dateStamp = new Date().toLocaleDateString('en-GB', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+}).toUpperCase();
 ---
 
 <Layout title="Lewisham Your Party">
@@ -29,11 +37,19 @@ const latestAnnouncements = allNews
         
         <div class="max-w-6xl mx-auto">
             
-            <div class="bg-yp-slate text-white p-8 md:p-12 shadow-xl">
-                <h2 class="text-3xl font-bold mb-4">We're building a new kind of political party.</h2>
-                <p class="text-lg mb-0 opacity-90">
-                    We are building a new kind of political party! One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From 'Sanctuary Borough' protections to universal free school meals, we are fighting for a local government that puts residents before profit.
-                </p>
+            {/* NEWSPAPER FOLIO */}
+            <div class="mb-12">
+                <div class="flex flex-col md:flex-row justify-center md:justify-between items-center text-center gap-2 md:gap-0 border-y-4 border-yp-slate py-2 mb-8 font-bold text-[10px] md:text-xs uppercase tracking-widest text-yp-slate">
+                    <span>ESTABLISHED MARCH 2026</span>
+                    <span>{dateStamp}</span>
+                    <span>LONDON BOROUGH OF LEWISHAM</span>
+                </div>
+                <div class="bg-yp-slate text-white p-8 md:p-12 shadow-xl">
+                    <h2 class="text-3xl font-bold mb-4">We're building a new kind of political party.</h2>
+                    <p class="text-lg mb-0 opacity-90">
+                        We are building a new kind of political party! One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From 'Sanctuary Borough' protections to universal free school meals, we are fighting for a local government that puts residents before profit.
+                    </p>
+                </div>
             </div>
 
             {/* --- DUAL FEED DASHBOARD --- */}
@@ -41,7 +57,7 @@ const latestAnnouncements = allNews
                 
                 {/* COLUMN 1: LATEST NEWS (Events & Street Action) */}
                 <div>
-                    <div class="mb-8">
+                    <div class="mb-8 min-h-[80px]">
                         <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-1">Latest News</h3>
                         <p class="text-sm text-black font-bold uppercase tracking-wider">Events & Street Action</p>
                     </div>
@@ -52,37 +68,37 @@ const latestAnnouncements = allNews
                             const categoryLink = post.frontmatter.category === 'Street Action' ? '/street-action' : '/events';
                             
                             return (
-                                <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
-                                    {post.frontmatter.category && (
-                                        <a href={categoryLink} class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-slate transition-colors">
-                                            {post.frontmatter.category}
-                                        </a>
-                                    )}
-                                    
-                                    {post.frontmatter.featured_image && (
-                                        <a href={categoryLink} class="block mt-4 mb-4">
-                                            <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain shadow-sm hover:opacity-90 transition-opacity" />
-                                        </a>
-                                    )}
-                                    
-                                    <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
-                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
-                                        {post.frontmatter.location && (
-                                            <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                                <article class="flex flex-col h-full bg-white border-4 border-yp-red shadow-[5px_5px_0_0_#22383f] relative">
+                                    {/* HEADER ZONE */}
+                                    <div class="p-6 border-b-4 border-yp-red bg-yp-cream relative">
+                                        {post.frontmatter.category && (
+                                            <a href={categoryLink} class="absolute top-0 right-0 bg-yp-red text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-slate transition-colors">
+                                                {post.frontmatter.category}
+                                            </a>
                                         )}
+                                        
+                                        <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
+                                            <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                            {post.frontmatter.location && (
+                                                <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>
+                                            )}
+                                        </div>
+                                        
+                                        <a href={categoryLink} class="group">
+                                            <h4 class="text-xl font-bold uppercase tracking-widest leading-tight text-yp-slate mb-0 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
+                                        </a>
                                     </div>
                                     
-                                    <a href={categoryLink} class="group">
-                                        <h4 class="text-xl font-bold text-yp-slate mb-3 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
-                                    </a>
-                                    
-                                    {/* Unclamped prose so the whole text shows */}
-                                    <div class="prose prose-sm prose-slate max-w-none">
-                                        <post.default />
+                                    {/* BODY ZONE */}
+                                    <div class="p-6 flex-grow bg-white">
+                                        <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mt-0 mb-0 opacity-90">
+                                            {post.frontmatter.synopsis}
+                                        </p>
                                     </div>
 
-                                    <a href={categoryLink} class="inline-block mt-6 text-sm font-bold text-yp-red hover:text-yp-slate uppercase tracking-wider transition-colors border-b-2 border-yp-red hover:border-yp-slate pb-1">
-                                        Go to {post.frontmatter.category} page &rarr;
+                                    {/* FOOTER ZONE (BUTTON) */}
+                                    <a href={categoryLink} class="block w-full text-center p-4 bg-yp-red text-white font-bold uppercase tracking-widest border-t-4 border-yp-red hover:bg-yp-slate transition-colors">
+                                        VIEW DETAILS ➔
                                     </a>
                                 </article>
                             )
@@ -94,42 +110,40 @@ const latestAnnouncements = allNews
 
                 {/* COLUMN 2: LATEST ANNOUNCEMENTS */}
                 <div>
-                    <div class="mb-8">
-                        <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-red inline-block mb-1">Announcements</h3>
-                        {/* Invisible spacer so the headers line up perfectly across the two columns */}
-                        <p class="text-sm text-transparent select-none uppercase tracking-wider hidden md:block">&nbsp;</p>
+                    <div class="mb-8 min-h-[80px]">
+                        <h3 class="text-3xl font-heading uppercase border-b-4 border-yp-slate inline-block mb-1">Announcements</h3>
                     </div>
 
                     <div class="flex flex-col gap-6">
                         {latestAnnouncements.length > 0 ? latestAnnouncements.map((post: any) => (
-                            <article class="bg-white p-6 shadow-md border-l-8 border-yp-slate relative">
-                                {post.frontmatter.category && (
-                                    <a href="/announcements" class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-red transition-colors">
-                                        {post.frontmatter.category}
+                            <article class="flex flex-col h-full bg-white border-4 border-yp-slate shadow-[5px_5px_0_0_#ea433b] relative">
+                                {/* HEADER ZONE */}
+                                <div class="p-6 border-b-4 border-yp-slate bg-yp-cream relative">
+                                    {post.frontmatter.category && (
+                                        <a href="/announcements" class="absolute top-0 right-0 bg-yp-slate text-white text-xs font-bold px-3 py-1 uppercase hover:bg-yp-red transition-colors">
+                                            {post.frontmatter.category}
+                                        </a>
+                                    )}
+                                    
+                                    <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
+                                        <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
+                                    </div>
+                                    
+                                    <a href="/announcements" class="group">
+                                        <h4 class="text-xl font-bold text-yp-slate mb-0 group-hover:text-yp-red transition-colors uppercase tracking-widest leading-tight">{post.frontmatter.title}</h4>
                                     </a>
-                                )}
-                                
-                                {post.frontmatter.featured_image && (
-                                    <a href="/announcements" class="block mt-4 mb-4">
-                                        <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain shadow-sm hover:opacity-90 transition-opacity" />
-                                    </a>
-                                )}
-                                
-                                <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-500 mb-2 tracking-widest uppercase mt-4">
-                                    <span>{new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                                 </div>
                                 
-                                <a href="/announcements" class="group">
-                                    <h4 class="text-xl font-bold text-yp-slate mb-3 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
-                                </a>
-                                
-                                {/* Unclamped prose here too for consistency! */}
-                                <div class="prose prose-sm prose-slate max-w-none">
-                                    <post.default />
+                                {/* BODY ZONE */}
+                                <div class="p-6 flex-grow bg-white">
+                                    <p class="text-base md:text-lg font-medium leading-relaxed text-yp-slate mt-0 mb-0 opacity-90">
+                                        {post.frontmatter.synopsis}
+                                    </p>
                                 </div>
 
-                                <a href="/announcements" class="inline-block mt-6 text-sm font-bold text-yp-slate hover:text-yp-red uppercase tracking-wider transition-colors border-b-2 border-yp-slate hover:border-yp-red pb-1">
-                                    Go to Announcements page &rarr;
+                                {/* FOOTER ZONE (BUTTON) */}
+                                <a href="/announcements" class="block w-full text-center p-4 bg-yp-slate text-white font-bold uppercase tracking-widest border-t-4 border-yp-slate hover:bg-yp-red transition-colors">
+                                    VIEW DETAILS ➔
                                 </a>
                             </article>
                         )) : (
@@ -226,6 +240,10 @@ const latestAnnouncements = allNews
                     });
                 </script>
             </div>
+
+        </div>
+    </main>
+</Layout>div>
 
         </div>
     </main>
