@@ -8,3 +8,5 @@ location: Broadway Theatre
 synopsis: Come down and chat to Rushey Green residents…
 featured_image: /media/e4d09bb6-2b57-440b-bb73-446cf5afb0f8.jpeg
 ---
+## **12-2pm**
+
