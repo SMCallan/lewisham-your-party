@@ -2,32 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Thank You - Lewisham Your Party">
+<Layout
+    title="Your Voice Has Been Heard - Lewisham Your Party"
+    description="Confirmation page for Lewisham Your Party's anonymous suggestion box."
+>
     <main class="bg-yp-cream text-yp-slate p-8 md:p-16 pt-0 md:pt-0">
-        
         <div class="max-w-2xl mx-auto bg-yp-slate text-white p-8 md:p-12 shadow-xl text-center border-t-8 border-yp-red mb-20">
             <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter mb-4 text-yp-cream">
-                Thank You!
+                Your Voice
+                <span class="block text-yp-red">Has Been Heard</span>
             </h1>
-            <h2 class="text-2xl font-bold mb-4 text-yp-red">You are on the local list.</h2>
-            
+
             <div class="w-16 h-1 bg-yp-red mx-auto mb-6"></div>
-            
+
             <p class="text-lg mb-8 opacity-90 leading-relaxed">
-                We have received your email and will keep you updated on Lewisham campaigns. <br><br>
-                <strong>Important:</strong> To officially be a member of the Lewisham branch, you must also be a registered member of the national party. If you haven't done so yet, please complete your registration below.
+                Your submission has been sent to the local Lewisham organizing team. If you left contact details, someone may follow up. If you did not, your message will remain anonymous to us.
             </p>
-            
+
             <div class="flex flex-col gap-4 sm:px-8">
-                <a href="https://yourparty.uk/" class="block w-full bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer text-center">
-                    Step 2: Join National Party
+                <a href="/your-voice" class="block w-full bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer text-center">
+                    Send Another Submission
                 </a>
-                
+
                 <a href="/" class="block w-full bg-transparent border-2 border-white text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-white hover:text-yp-slate transition-colors cursor-pointer text-center">
-                    Return to Lewisham Home
+                    Return To Lewisham Home
                 </a>
             </div>
         </div>
-
     </main>
 </Layout>

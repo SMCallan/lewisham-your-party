@@ -1,5 +1,15 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const {
+    title = 'Lewisham Your Party | Community Power',
+    description = 'The official Lewisham branch of Your Party. We fight for homes for people, not profit, and organize local action across the London Borough of Lewisham.'
+} = Astro.props as Props;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,12 +21,12 @@ import '../styles/global.css';
         <link rel="apple-touch-icon" href="/YPLOGO.png" />
         <meta name="generator" content={Astro.generator} />
 
-        <title>Lewisham Your Party | Community Power</title>
-        <meta name="description" content="The official Lewisham branch of Your Party. We fight for homes for people, not profit, and organize local action across the London Borough of Lewisham." />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="keywords" content="Lewisham Your Party, Lewisham Politics, Catford Campaign, SE13 social justice, London grassroots politics" />
 
-        <meta property="og:title" content="Lewisham Your Party" />
-        <meta property="og:description" content="Building a new kind of political party in Lewisham. Join the movement." />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://lewishamyourparty.org.uk" />
         <meta property="og:image" content="https://lewishamyourparty.org.uk/YPLOGO.png" />
@@ -35,9 +45,12 @@ import '../styles/global.css';
                 {/* --- UNIFIED NAVIGATION MENU --- */}
                 <nav class="mt-8 mb-8 border-4 border-yp-slate shadow-[5px_5px_0_0_rgba(34,56,63,1)] md:shadow-[10px_10px_0_0_rgba(34,56,63,1)] overflow-hidden">
                     {/* ROW 1: PRIMARY LINKS */}
-                    <div class="grid grid-cols-1 md:grid-cols-3 divide-y-4 md:divide-y-0 md:divide-x-4 divide-yp-slate border-b-4 border-yp-slate bg-white">
+                    <div class="grid grid-cols-1 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-yp-slate border-b-4 border-yp-slate bg-white">
                         <a href="/about" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
                             WHO WE ARE
+                        </a>
+                        <a href="/your-voice" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
+                            YOUR VOICE
                         </a>
                         <a href="/#join-mailing-list" class="p-5 text-center font-heading text-2xl md:text-3xl uppercase text-yp-slate hover:bg-yp-red hover:text-white transition-all">
                             STAY UPDATED
@@ -105,6 +118,7 @@ import '../styles/global.css';
                 <div class="flex flex-col gap-8 md:text-right">
                     <div class="flex flex-col gap-3 font-heading uppercase text-sm tracking-wider">
                         <a href="/about" class="hover:text-yp-red transition-colors">Who We Are</a>
+                        <a href="/your-voice" class="hover:text-yp-red transition-colors">Your Voice</a>
                         <a href="/privacy-notice" class="hover:text-yp-red transition-colors">Privacy Policy</a>
                         <a href="/cookie-policy" class="hover:text-yp-red transition-colors">Cookie Policy</a>
                         <a href="/terms-of-service" class="hover:text-yp-red transition-colors">Terms of Service</a>

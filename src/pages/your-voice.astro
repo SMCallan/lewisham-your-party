@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+    title="Your Voice - Lewisham Your Party"
+    description="Share an anonymous suggestion, concern, or idea with Lewisham Your Party through our local suggestion box."
+>
+    <main class="min-h-screen bg-yp-cream text-yp-slate p-8 md:p-16 pt-0 md:pt-0">
+        <div class="max-w-6xl mx-auto">
+            <a href="/" class="inline-block mb-8 text-yp-red font-bold uppercase tracking-wider hover:underline">
+                &larr; Back to Home
+            </a>
+
+            <section class="mb-10 md:mb-12">
+                <p class="text-sm font-bold uppercase tracking-[0.3em] text-yp-red mb-4">Anonymous Suggestion Box</p>
+                <h1 class="text-5xl md:text-7xl font-heading uppercase tracking-tighter inline-block border-b-8 border-yp-red pb-1 mb-6">
+                    Your Voice
+                </h1>
+                <p class="text-xl md:text-2xl font-medium leading-relaxed opacity-90 max-w-3xl mb-8">
+                    If something in Lewisham needs attention, tell us. You do not need to be a member, and you do not need to give your name.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#voice-form" class="inline-block bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors text-center">
+                        Send An Anonymous Submission
+                    </a>
+                    <a href="#how-it-works" class="inline-block border-4 border-yp-slate text-yp-slate font-bold py-4 px-6 uppercase tracking-wider hover:bg-white transition-colors text-center">
+                        How It Works
+                    </a>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 xl:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+                <section id="how-it-works" class="order-2 xl:order-1 scroll-mt-10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-4 mb-8">
+                        <div class="bg-yp-slate text-white p-5 border-t-8 border-yp-red shadow-lg">
+                            <p class="font-bold uppercase tracking-widest text-sm mb-3">Anonymous First</p>
+                            <p class="text-sm leading-relaxed opacity-90">
+                                Leave the contact field blank if you want to stay anonymous. Do not include identifying details in your message unless you want to.
+                            </p>
+                        </div>
+                        <div class="bg-white p-5 border-4 border-yp-slate shadow-lg">
+                            <p class="font-bold uppercase tracking-widest text-sm text-yp-red mb-3">Open To All</p>
+                            <p class="text-sm leading-relaxed opacity-90">
+                                Residents, workers, students, neighbours, and anyone with a stake in Lewisham can use this box.
+                            </p>
+                        </div>
+                        <div class="bg-white p-5 border-4 border-yp-slate shadow-lg">
+                            <p class="font-bold uppercase tracking-widest text-sm text-yp-red mb-3">Volunteer Monitored</p>
+                            <p class="text-sm leading-relaxed opacity-90">
+                                Messages are reviewed by the local organizing team. This is not an emergency service or a 24/7 casework inbox.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yp-slate text-white p-8 shadow-xl">
+                        <h2 class="text-2xl md:text-3xl font-heading uppercase tracking-tighter mb-4">What To Send</h2>
+                        <div class="space-y-4 text-base md:text-lg opacity-90 leading-relaxed">
+                            <p>Use this space for ideas, concerns, campaign tips, local issues, or things you think people in Lewisham are being ignored on.</p>
+                            <p>If you want a reply, leave an email address. If you do not, leave it blank and your submission can stay anonymous.</p>
+                            <p class="font-bold text-yp-cream">Please avoid sharing sensitive personal information about yourself or anyone else unless it is genuinely necessary.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="voice-form" class="order-1 xl:order-2 bg-white p-8 md:p-10 shadow-[10px_10px_0_0_rgba(34,56,63,1)] border-t-8 border-yp-red scroll-mt-10">
+                    <h2 class="text-3xl md:text-4xl font-heading uppercase tracking-tighter mb-3">Send A Submission</h2>
+                    <p class="text-base md:text-lg opacity-80 mb-8">
+                        Short, direct, and specific messages are easiest for volunteers to act on.
+                    </p>
+
+                    <form action="https://api.web3forms.com/submit" method="POST" class="flex flex-col gap-6">
+                        <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
+                        <input type="hidden" name="redirect" value="https://lewishamyourparty.org.uk/voice-heard" />
+                        <input type="hidden" name="subject" value="New Your Voice submission - Lewisham YP" />
+                        <input type="hidden" name="from_name" value="Lewisham Your Voice Box" />
+                        <input type="hidden" name="form_type" value="Your Voice suggestion box" />
+                        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-bold uppercase tracking-widest">What is this about? *</span>
+                                <select name="Topic" required class="p-4 bg-yp-cream text-yp-slate border-4 border-transparent focus:border-yp-red focus:outline-none">
+                                    <option value="">Choose a topic</option>
+                                    <option>Local concern</option>
+                                    <option>Idea or proposal</option>
+                                    <option>Campaign tip</option>
+                                    <option>Housing or rent</option>
+                                    <option>Public services</option>
+                                    <option>Street safety or transport</option>
+                                    <option>Other</option>
+                                </select>
+                            </label>
+
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-bold uppercase tracking-widest">Your connection to Lewisham</span>
+                                <select name="Connection to Lewisham" class="p-4 bg-yp-cream text-yp-slate border-4 border-transparent focus:border-yp-red focus:outline-none">
+                                    <option value="">Prefer not to say</option>
+                                    <option>Resident</option>
+                                    <option>Worker</option>
+                                    <option>Student</option>
+                                    <option>Local volunteer or organizer</option>
+                                    <option>Regular visitor</option>
+                                    <option>Supporter with an interest in Lewisham</option>
+                                </select>
+                            </label>
+
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-bold uppercase tracking-widest">Lewisham area or postcode</span>
+                                <input
+                                    type="text"
+                                    name="Area"
+                                    placeholder="Optional, e.g. Catford or SE6"
+                                    class="p-4 bg-yp-cream text-yp-slate border-4 border-transparent focus:border-yp-red focus:outline-none"
+                                />
+                            </label>
+
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-bold uppercase tracking-widest">Email for reply</span>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Leave blank to stay anonymous"
+                                    class="p-4 bg-yp-cream text-yp-slate border-4 border-transparent focus:border-yp-red focus:outline-none"
+                                />
+                            </label>
+                        </div>
+
+                        <label class="flex flex-col gap-2">
+                            <span class="text-sm font-bold uppercase tracking-widest">What should we hear? *</span>
+                            <textarea
+                                name="Message"
+                                rows="10"
+                                required
+                                placeholder="Tell us what is happening, what should change, or what you think Lewisham organizers should pay attention to."
+                                class="p-4 bg-yp-cream text-yp-slate border-4 border-transparent focus:border-yp-red focus:outline-none resize-y min-h-[240px]"
+                            ></textarea>
+                        </label>
+
+                        <label class="flex items-start gap-3 text-sm leading-relaxed">
+                            <input type="checkbox" name="voice_consent" required class="mt-1 h-4 w-4 cursor-pointer" />
+                            <span>
+                                I understand this submission will be sent to Lewisham Your Party volunteers through Web3Forms, and if I want to remain anonymous I should avoid including personal details I would not want shared by email.
+                            </span>
+                        </label>
+
+                        <div class="border-t-4 border-yp-slate pt-6 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                            <p class="text-sm uppercase tracking-widest font-bold opacity-70">
+                                Anonymous by default. Optional reply if you leave an email.
+                            </p>
+                            <button
+                                type="submit"
+                                class="bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors cursor-pointer"
+                            >
+                                Send Your Voice
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+</Layout>
