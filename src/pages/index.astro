@@ -35,6 +35,7 @@ const heroTitle = "We're building a new kind of political party.";
 const heroDescription = "We are building a new kind of political party. One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From Sanctuary Borough protections to universal free school meals, we are fighting for a local government that puts residents before profit.";
 const heroValues = ['Homes', 'Services', 'Solidarity', 'Local Power'];
 const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public mural art, and local protest history.';
+const fundraiserLink = 'https://gofund.me/7febfc87e';
 ---
 
 <Layout title="Lewisham Your Party">
@@ -111,6 +112,49 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
                     </div>
                 </div>
             </div>
+
+            {/* TEMPORARY ELECTION FUNDRAISER - remove after 7 May 2026 local elections */}
+            <section class="mb-20 border-4 border-yp-slate bg-white shadow-[10px_10px_0_0_rgba(34,56,63,1)] overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div class="p-8 md:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-yp-slate">
+                        <p class="text-sm font-bold uppercase tracking-[0.3em] text-yp-red mb-4">Temporary Campaign Appeal</p>
+                        <h3 class="text-3xl md:text-5xl font-heading uppercase tracking-tighter mb-4">
+                            Help Fund Our Lewisham Election Campaign
+                        </h3>
+                        <div class="space-y-4 text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl">
+                            <p>
+                                We are raising funds for our Lewisham local election campaign, supporting Davis St Marthe and Dan Ansell in Lewisham Central, and Callum Carter in Rushey Green.
+                            </p>
+                            <p>
+                                Our core team is currently covering campaign costs, and donations will help part-fund leaflets, print, and other local election materials.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yp-slate text-white p-8 md:p-10 flex flex-col justify-between gap-6">
+                        <div class="space-y-4">
+                            <p class="text-sm md:text-base uppercase tracking-widest font-bold text-yp-red">
+                                Hosted On GoFundMe
+                            </p>
+                            <p class="text-lg md:text-xl leading-relaxed opacity-90">
+                                Posted by Daniel Ansell. Donations above <strong>£50</strong> require contact details for Electoral Commission reporting.
+                            </p>
+                            <p class="text-sm uppercase tracking-widest font-bold opacity-75">
+                                Please donate before the 7 May 2026 local elections.
+                            </p>
+                        </div>
+
+                        <a
+                            href={fundraiserLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block bg-yp-red text-white font-bold py-4 px-6 uppercase tracking-wider hover:bg-red-700 transition-colors text-center"
+                        >
+                            Donate On GoFundMe
+                        </a>
+                    </div>
+                </div>
+            </section>
 
             <section class="mb-20 border-4 border-yp-slate bg-white shadow-[10px_10px_0_0_rgba(34,56,63,1)] overflow-hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr]">
