@@ -30,6 +30,11 @@ const dateStamp = new Date().toLocaleDateString('en-GB', {
     month: 'long', 
     day: 'numeric' 
 }).toUpperCase();
+
+const heroTitle = "We're building a new kind of political party.";
+const heroDescription = "We are building a new kind of political party. One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From Sanctuary Borough protections to universal free school meals, we are fighting for a local government that puts residents before profit.";
+const heroValues = ['Homes', 'Services', 'Solidarity', 'Local Power'];
+const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public mural art, and local protest history.';
 ---
 
 <Layout title="Lewisham Your Party">
@@ -45,35 +50,64 @@ const dateStamp = new Date().toLocaleDateString('en-GB', {
                     <span>LONDON BOROUGH OF LEWISHAM</span>
                 </div>
                 <div class="border-4 border-yp-slate bg-white shadow-[10px_10px_0_0_rgba(34,56,63,1)] overflow-hidden">
-                    <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] items-stretch">
+                    <div class="lg:hidden">
                         <div class="bg-yp-slate text-white p-8 md:p-12 flex flex-col justify-between gap-8">
                             <div>
                                 <p class="text-sm font-bold uppercase tracking-[0.3em] text-yp-red mb-4">Community Power</p>
                                 <h2 class="text-3xl md:text-5xl font-heading uppercase tracking-tighter mb-4">
-                                    We're building a new kind of political party.
+                                    {heroTitle}
                                 </h2>
                                 <p class="text-lg md:text-xl leading-relaxed opacity-90">
-                                    We are building a new kind of political party. One that belongs to the people of Lewisham. We are campaigning for high-quality housing standards, the protection of our essential public services, and a community built on international solidarity. From Sanctuary Borough protections to universal free school meals, we are fighting for a local government that puts residents before profit.
+                                    {heroDescription}
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white/75">
-                                <span>Homes</span>
-                                <span>Services</span>
-                                <span>Solidarity</span>
-                                <span>Local Power</span>
+                                {heroValues.map((value) => (
+                                    <span>{value}</span>
+                                ))}
                             </div>
                         </div>
 
-                        <div class="bg-yp-cream lg:border-l-4 border-yp-slate">
+                        <div class="bg-yp-cream border-t-4 border-yp-slate">
                             <img
                                 src="/LewishamHeroImage.png"
-                                alt="Lewisham collage featuring the Catford Centre sign, public mural art, and local protest history."
-                                class="w-full h-auto lg:h-full lg:object-cover lg:object-[62%_center]"
+                                alt={heroImageAlt}
+                                class="block w-full h-auto"
                                 loading="eager"
                                 fetchpriority="high"
                             />
                         </div>
+                    </div>
+
+                    <div class="hidden lg:block relative bg-yp-slate">
+                        <img
+                            src="/LewishamHeroImage.png"
+                            alt={heroImageAlt}
+                            class="block w-full h-auto"
+                            loading="eager"
+                            fetchpriority="high"
+                        />
+
+                        <div class="absolute inset-y-0 left-0 z-10 flex w-[44%] min-w-[24rem] max-w-[32rem] flex-col justify-between bg-yp-slate/92 p-10 xl:p-12">
+                            <div>
+                                <p class="text-sm font-bold uppercase tracking-[0.3em] text-yp-red mb-4">Community Power</p>
+                                <h2 class="text-5xl xl:text-6xl font-heading uppercase tracking-tighter mb-4 text-white leading-[0.92]">
+                                    {heroTitle}
+                                </h2>
+                                <p class="text-lg xl:text-xl leading-relaxed text-white/90">
+                                    {heroDescription}
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3 text-sm font-bold uppercase tracking-widest text-white/75">
+                                {heroValues.map((value) => (
+                                    <span>{value}</span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-yp-slate/35 via-transparent to-transparent"></div>
                     </div>
                 </div>
             </div>
