@@ -1,20 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {
+    compareEventsByStartDateAsc,
+    formatEventDateRange,
+    getTodayDayNumber,
+    isEventCurrentOrUpcoming,
+} from '../lib/eventDates';
 
 // 1. Fetch all the markdown posts from our news folder
 const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
 
-// 2. Define "Today" (Midnight) for the Action Calendar
-const today = new Date();
-today.setHours(0, 0, 0, 0); 
+// 2. Define "Today" for the Action Calendar
+const todayDay = getTodayDayNumber();
 
-// 3. BUILD FEED 1: Latest News (Events & Street Action ONLY, must be >= today, closest first)
+// 3. BUILD FEED 1: Latest News (Events & Street Action ONLY, current or upcoming, closest first)
 const upcomingActions = allNews
     .filter((post: any) => 
         (post.frontmatter.category === 'Events' || post.frontmatter.category === 'Street Action') && 
-        new Date(post.frontmatter.date) >= today
+        isEventCurrentOrUpcoming(post.frontmatter, todayDay)
     )
-    .sort((a: any, b: any) => new Date(a.frontmatter.date).valueOf() - new Date(b.frontmatter.date).valueOf())
+    .sort(compareEventsByStartDateAsc)
     .slice(0, 3); // Grab top 3
 
 // 4. BUILD FEED 2: Latest Announcements (Announcements ONLY, newest published first)
@@ -204,7 +209,7 @@ const fundraiserLink = 'https://gofund.me/7febfc87e';
                                     
                                     <div class="flex flex-wrap gap-4 mb-4 mt-2">
                                         <span class="bg-yp-slate text-yp-cream px-2 py-1 font-bold text-sm tracking-widest">
-                                            {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
+                                            {formatEventDateRange(post.frontmatter)}
                                         </span>
                                         {post.frontmatter.location && (
                                             <span class="text-yp-red font-bold text-sm uppercase flex items-center gap-1">📍 {post.frontmatter.location}</span>
