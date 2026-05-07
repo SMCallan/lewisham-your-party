@@ -4,14 +4,17 @@ import {
     compareEventsByStartDateAsc,
     compareEventsByStartDateDesc,
     formatEventDateRange,
+    getCalendarDownloadName,
+    getCalendarHref,
     getTodayDayNumber,
     isEventHappeningToday,
     isEventPast,
     isEventUpcoming,
 } from '../lib/eventDates';
+import { getNewsPosts, getPostHref } from '../lib/news';
 
 // 1. Fetch posts and filter ONLY for "Street Action"
-const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }))
+const allNews = (await getNewsPosts({ includeArchive: true }))
     .filter((post: any) => post.frontmatter.category === 'Street Action');
 
 // 2. Define Date Boundaries
@@ -55,19 +58,33 @@ legacyEvents.sort(compareEventsByStartDateDesc);
                     <section>
                         <h3 class="text-3xl font-heading uppercase inline-block mb-8 bg-yp-red text-white px-4 py-2 animate-pulse rounded-sm shadow-md">Happening Today</h3>
                         <div class="flex flex-col gap-6">
-                            {presentEvents.map((post: any) => (
-                                <article class="bg-white p-6 md:p-8 shadow-lg border-l-8 border-yp-red border-t-4 border-t-yp-red relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />}
-                                    <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                                        <span>
-                                            {formatEventDateRange(post.frontmatter)}
-                                        </span>
-                                        {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
-                                    </div>
-                                    <h2 class="text-3xl font-bold text-yp-slate mb-4">{post.frontmatter.title}</h2>
-                                    <div class="prose prose-slate max-w-none"><post.default /></div>
-                                </article>
-                            ))}
+                            {presentEvents.map((post: any) => {
+                                const postHref = getPostHref(post);
+
+                                return (
+                                    <article id={post.slug} class="scroll-mt-10 bg-white p-6 md:p-8 shadow-lg border-l-8 border-yp-red border-t-4 border-t-yp-red relative">
+                                        {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt={post.frontmatter.title} class="w-full h-auto object-contain mb-6 shadow-sm" />}
+                                        <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
+                                            <span>
+                                                {formatEventDateRange(post.frontmatter)}
+                                            </span>
+                                            {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
+                                        </div>
+                                        <h2 class="text-3xl font-bold text-yp-slate mb-4">{post.frontmatter.title}</h2>
+                                        <div class="mb-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-black uppercase tracking-widest">
+                                            <a href={postHref} class="text-yp-slate hover:underline decoration-4 underline-offset-4">Direct Link</a>
+                                            <a
+                                                href={getCalendarHref(post.frontmatter, postHref)}
+                                                download={getCalendarDownloadName(post.slug)}
+                                                class="text-yp-red hover:underline decoration-4 underline-offset-4"
+                                            >
+                                                Add To Calendar
+                                            </a>
+                                        </div>
+                                        <div class="prose prose-slate max-w-none"><post.default /></div>
+                                    </article>
+                                )
+                            })}
                         </div>
                     </section>
                 )}
@@ -76,19 +93,33 @@ legacyEvents.sort(compareEventsByStartDateDesc);
                 {upcomingEvents.length > 0 && (
                     <section>
                         <div class="flex flex-col gap-6">
-                            {upcomingEvents.map((post: any) => (
-                                <article class="bg-white p-6 shadow-md border-l-8 border-yp-red relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-6 shadow-sm" />}
-                                    <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                                        <span>
-                                            {formatEventDateRange(post.frontmatter)}
-                                        </span>
-                                        {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
-                                    </div>
-                                    <h2 class="text-2xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h2>
-                                    <div class="prose prose-slate max-w-none"><post.default /></div>
-                                </article>
-                            ))}
+                            {upcomingEvents.map((post: any) => {
+                                const postHref = getPostHref(post);
+
+                                return (
+                                    <article id={post.slug} class="scroll-mt-10 bg-white p-6 shadow-md border-l-8 border-yp-red relative">
+                                        {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt={post.frontmatter.title} class="w-full h-auto object-contain mb-6 shadow-sm" />}
+                                        <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase">
+                                            <span>
+                                                {formatEventDateRange(post.frontmatter)}
+                                            </span>
+                                            {post.frontmatter.location && <span class="text-yp-red flex items-center gap-1">📍 {post.frontmatter.location}</span>}
+                                        </div>
+                                        <h2 class="text-2xl font-bold text-yp-slate mb-3">{post.frontmatter.title}</h2>
+                                        <div class="mb-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-black uppercase tracking-widest">
+                                            <a href={postHref} class="text-yp-slate hover:underline decoration-4 underline-offset-4">Direct Link</a>
+                                            <a
+                                                href={getCalendarHref(post.frontmatter, postHref)}
+                                                download={getCalendarDownloadName(post.slug)}
+                                                class="text-yp-red hover:underline decoration-4 underline-offset-4"
+                                            >
+                                                Add To Calendar
+                                            </a>
+                                        </div>
+                                        <div class="prose prose-slate max-w-none"><post.default /></div>
+                                    </article>
+                                )
+                            })}
                         </div>
                     </section>
                 )}
@@ -99,8 +130,8 @@ legacyEvents.sort(compareEventsByStartDateDesc);
                         <h3 class="text-3xl font-heading uppercase border-b-4 border-gray-400 text-gray-500 inline-block mb-8 mt-12">Past Actions</h3>
                         <div class="flex flex-col gap-6">
                             {legacyEvents.map((post: any) => (
-                                <article class="bg-gray-50 p-6 shadow-sm border-l-8 border-gray-300 relative">
-                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt="" class="w-full h-auto object-contain mb-4 opacity-90 grayscale-[20%]" />}
+                                <article id={post.slug} class="scroll-mt-10 bg-gray-50 p-6 shadow-sm border-l-8 border-gray-300 relative">
+                                    {post.frontmatter.featured_image && <img src={post.frontmatter.featured_image} alt={post.frontmatter.title} class="w-full h-auto object-contain mb-4 opacity-90 grayscale-[20%]" />}
                                     <div class="flex flex-wrap gap-4 text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase mt-2">
                                         <span>
                                             {formatEventDateRange(post.frontmatter)}

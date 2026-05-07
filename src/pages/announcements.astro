@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getNewsPosts } from '../lib/news';
 
-const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
+const allNews = await getNewsPosts();
 const filteredPosts = allNews
     .filter((post: any) => post.frontmatter.category === 'Announcements')
     // Newsfeed: Always newest publish date first
@@ -27,7 +28,7 @@ const filteredPosts = allNews
                         {post.frontmatter.featured_image && (
                             <img 
                                 src={post.frontmatter.featured_image} 
-                                alt="" 
+                                alt={post.frontmatter.title}
                                 class="w-full h-auto object-contain mb-6 shadow-sm mt-4"
                             />
                         )}

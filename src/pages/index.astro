@@ -3,12 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import {
     compareEventsByStartDateAsc,
     formatEventDateRange,
+    getCalendarDownloadName,
+    getCalendarHref,
     getTodayDayNumber,
     isEventCurrentOrUpcoming,
 } from '../lib/eventDates';
+import { getCategoryPath, getNewsPosts, getPostHref } from '../lib/news';
 
 // 1. Fetch all the markdown posts from our news folder
-const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
+const allNews = await getNewsPosts();
 
 // 2. Define "Today" for the Action Calendar
 const todayDay = getTodayDayNumber();
@@ -153,7 +156,8 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
                     <div class="flex flex-col gap-6">
                         {upcomingActions.length > 0 ? upcomingActions.map((post: any) => {
                             // Dynamically set the link depending on the category
-                            const categoryLink = post.frontmatter.category === 'Street Action' ? '/street-action' : '/events';
+                            const categoryLink = getCategoryPath(post.frontmatter.category);
+                            const postHref = getPostHref(post);
                             
                             return (
                                 <article class="relative border-4 border-yp-slate bg-white shadow-[10px_10px_0_0_rgba(34,56,63,1)] transition-all duration-150 hover:translate-x-[10px] hover:translate-y-[10px] hover:shadow-none cursor-pointer p-6 flex flex-col h-full">
@@ -172,7 +176,7 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
                                         )}
                                     </div>
                                     
-                                    <a href={categoryLink} class="group">
+                                    <a href={postHref} class="group">
                                         <h4 class="text-xl font-bold uppercase tracking-widest leading-tight text-yp-slate mb-4 group-hover:text-yp-red transition-colors">{post.frontmatter.title}</h4>
                                     </a>
                                     
@@ -180,9 +184,16 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
                                         {post.frontmatter.synopsis}
                                     </p>
 
-                                    <div class="mt-auto">
-                                        <a href={categoryLink} class="font-black text-yp-slate uppercase tracking-widest hover:underline decoration-4 underline-offset-4 block">
+                                    <div class="mt-auto flex flex-wrap gap-x-5 gap-y-3">
+                                        <a href={postHref} class="font-black text-yp-slate uppercase tracking-widest hover:underline decoration-4 underline-offset-4 block">
                                             VIEW DETAILS ➔
+                                        </a>
+                                        <a
+                                            href={getCalendarHref(post.frontmatter, postHref)}
+                                            download={getCalendarDownloadName(post.slug)}
+                                            class="font-black text-yp-red uppercase tracking-widest hover:underline decoration-4 underline-offset-4 block"
+                                        >
+                                            ADD TO CALENDAR
                                         </a>
                                     </div>
                                 </article>
@@ -245,6 +256,7 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
 
                 <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 w-full max-w-xl" id="signup-form">
                     <input type="hidden" name="access_key" value="a31ca5cd-cd04-4c1a-a13a-72fc67f7de4f" />
+                    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
                     
                     {/* The redirect value here will be changed by the script below if they click "Yes" */}
                     <input type="hidden" name="redirect" id="form-redirect" value="https://lewishamyourparty.org.uk/success" />

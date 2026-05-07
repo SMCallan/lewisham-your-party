@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getNewsPosts } from '../lib/news';
 
 // 1. Fetch all markdown files from the news folder
-const allNews = Object.values(import.meta.glob('../content/news/*.md', { eager: true }));
+const allNews = await getNewsPosts();
 
 // 2. Filter for Campaigns only and sort by date (newest first)
 const campaignsPosts = allNews

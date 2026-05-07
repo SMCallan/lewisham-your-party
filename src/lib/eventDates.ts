@@ -4,8 +4,11 @@ const DAY_IN_MS = 24 * 60 * 60 * 1000;
 type DateValue = Date | string | number;
 
 type EventFrontmatter = {
+    title?: string;
     date: DateValue;
     end_date?: DateValue;
+    location?: string;
+    synopsis?: string;
 };
 
 const getLondonDateKey = (date: Date) => {
@@ -50,6 +53,24 @@ export const dateKeyToDayNumber = (dateKey: string) => {
     const [year, month, day] = dateKey.split('-').map(Number);
 
     return Math.floor(Date.UTC(year, month - 1, day) / DAY_IN_MS);
+};
+
+const dayNumberToDateKey = (dayNumber: number) => {
+    return new Date(dayNumber * DAY_IN_MS).toISOString().slice(0, 10);
+};
+
+const addDaysToDateKey = (dateKey: string, days: number) => {
+    return dayNumberToDateKey(dateKeyToDayNumber(dateKey) + days);
+};
+
+const toCalendarDate = (dateKey: string) => dateKey.replaceAll('-', '');
+
+const escapeCalendarText = (value = '') => {
+    return value
+        .replace(/\\/g, '\\\\')
+        .replace(/\n/g, '\\n')
+        .replace(/,/g, '\\,')
+        .replace(/;/g, '\\;');
 };
 
 export const getEventStartDay = (frontmatter: EventFrontmatter) => {
@@ -102,4 +123,35 @@ export const formatEventDateRange = (frontmatter: EventFrontmatter) => {
     }
 
     return formatDate(frontmatter.date);
+};
+
+export const getCalendarDownloadName = (slug: string) => `${slug}.ics`;
+
+export const getCalendarHref = (frontmatter: EventFrontmatter, eventUrl: string) => {
+    const startDateKey = toDateKey(frontmatter.date);
+    const endDateKey = toDateKey(frontmatter.end_date ?? frontmatter.date);
+    const exclusiveEndDateKey = addDaysToDateKey(endDateKey, 1);
+    const fullEventUrl = eventUrl.startsWith('http') ? eventUrl : `https://lewishamyourparty.org.uk${eventUrl}`;
+    const calendarText = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Lewisham Your Party//Events//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${toCalendarDate(startDateKey)}-${encodeURIComponent(fullEventUrl)}@lewishamyourparty.org.uk`,
+        `DTSTAMP:${toCalendarDate(getLondonDateKey(new Date()))}T000000Z`,
+        `DTSTART;VALUE=DATE:${toCalendarDate(startDateKey)}`,
+        `DTEND;VALUE=DATE:${toCalendarDate(exclusiveEndDateKey)}`,
+        `SUMMARY:${escapeCalendarText(frontmatter.title ?? 'Lewisham Your Party event')}`,
+        `DESCRIPTION:${escapeCalendarText(frontmatter.synopsis ?? '')}`,
+        frontmatter.location ? `LOCATION:${escapeCalendarText(frontmatter.location)}` : '',
+        `URL:${fullEventUrl}`,
+        'END:VEVENT',
+        'END:VCALENDAR',
+    ]
+        .filter(Boolean)
+        .join('\r\n');
+
+    return `data:text/calendar;charset=utf-8,${encodeURIComponent(calendarText)}`;
 };

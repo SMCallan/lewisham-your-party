@@ -47,3 +47,48 @@ content:
         label: Article Content
         type: rich-text
         required: false
+  - name: newsArchive
+    label: Archived Updates & Events
+    type: collection
+    path: src/content/archive
+    fields:
+      - name: title
+        label: Article Title
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - Events
+            - Street Action
+            - Announcements
+            - Campaigns
+        required: true
+      - name: hide_title
+        label: Hide Title/Date on Page? (Use for Flyers)
+        type: boolean
+        default: false
+      - name: date
+        label: Start Date
+        type: date
+        required: true
+      - name: end_date
+        label: End Date (Optional, for multi-day events)
+        type: date
+        required: false
+      - name: location
+        label: Location (Optional)
+        type: string
+      - name: synopsis
+        label: Article Synopsis (Max 150 chars)
+        type: string
+        required: true
+      - name: featured_image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Article Content
+        type: rich-text
+        required: false
