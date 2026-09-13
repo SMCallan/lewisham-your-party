@@ -13,10 +13,10 @@ import Layout from '../layouts/Layout.astro';
             
             <div class="space-y-6 text-lg opacity-90 leading-relaxed">
                 <p>
-                    We are the Lewisham proto-branch of <strong>Your Party</strong>. We are a grassroots movement of local residents, campaigners, and volunteers organizing to fight against gentrification and stand for homes for people, not profit.
+                    We are the official Lewisham branch of <strong>Your Party</strong>. We are a grassroots movement of local residents, campaigners, and volunteers organizing to fight against gentrification and stand for homes for people, not profit.
                 </p>
                 <p>
-                    While the central committee is formally establishing the national party structure, we are actively building power and momentum on the streets of Lewisham.
+                    Our members have elected our first branch officers, and we are now building power and momentum on the streets of Lewisham as a fully constituted Your Party branch.
                 </p>
 
                 <div class="pt-6 pb-2">
@@ -47,6 +47,25 @@ import Layout from '../layouts/Layout.astro';
                             <div class="bg-yp-slate text-white p-5 transition-all border-l-4 border-transparent hover:border-yp-slate hover:bg-yp-red cursor-default group">
                                 <span class="block font-bold uppercase tracking-tighter text-lg mb-2">{pillar.name}</span>
                                 <span class="block text-sm opacity-80 group-hover:opacity-100 leading-relaxed">{pillar.desc}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div class="pt-6 pb-2">
+                    <h2 class="text-2xl font-heading uppercase border-b-4 border-yp-red inline-block mb-6">Branch Officers</h2>
+                    <p class="mb-6">Elected by Lewisham members to lead and coordinate the work of the branch.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {[
+                            { role: 'Chair', name: 'Choo-Chen Sim' },
+                            { role: 'Secretary', name: 'Daniel Ansell' },
+                            { role: 'Treasurer', name: 'Callan MacDonald' },
+                            { role: 'Organiser', name: 'John McGrath' },
+                            { role: 'Workplace Liaison', name: 'Callum Carter' }
+                        ].map((officer) => (
+                            <div class="bg-white text-yp-slate p-5 border-4 border-yp-slate border-l-8 border-l-yp-red">
+                                <span class="block text-xs font-bold uppercase tracking-widest text-yp-red mb-1">{officer.role}</span>
+                                <span class="block font-heading uppercase tracking-tighter text-2xl">{officer.name}</span>
                             </div>
                         ))}
                     </div>
