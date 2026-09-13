@@ -25,6 +25,10 @@ content:
         label: Hide Title/Date on Page? (Use for Flyers)
         type: boolean
         default: false
+      - name: pinned
+        label: Pin to Top? (Keeps an Announcement first on the homepage)
+        type: boolean
+        default: false
       - name: date
         label: Start Date
         type: date
@@ -68,6 +72,10 @@ content:
         required: true
       - name: hide_title
         label: Hide Title/Date on Page? (Use for Flyers)
+        type: boolean
+        default: false
+      - name: pinned
+        label: Pin to Top? (Keeps an Announcement first on the homepage)
         type: boolean
         default: false
       - name: date

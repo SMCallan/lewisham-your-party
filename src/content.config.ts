@@ -48,6 +48,7 @@ const newsSchema = z
 
             return value;
         }, z.coerce.date().optional()),
+        pinned: z.boolean().optional().default(false),
         location: optionalString,
         synopsis: z.string().trim().min(1, 'Synopsis is required.'),
         featured_image: imagePath,

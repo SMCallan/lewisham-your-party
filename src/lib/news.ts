@@ -61,6 +61,17 @@ export const getCategoryPath = (category: string) => {
     return '/announcements';
 };
 
+// Pinned posts first, then newest publish date first
+export const compareAnnouncements = (a: any, b: any) => {
+    const pinnedDifference = Number(Boolean(b.frontmatter.pinned)) - Number(Boolean(a.frontmatter.pinned));
+
+    if (pinnedDifference !== 0) {
+        return pinnedDifference;
+    }
+
+    return new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf();
+};
+
 export const getPostHref = (post: { frontmatter: { category: string }; slug: string }) => {
     return `${getCategoryPath(post.frontmatter.category)}#${post.slug}`;
 };

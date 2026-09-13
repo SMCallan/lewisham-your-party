@@ -8,7 +8,7 @@ import {
     getTodayDayNumber,
     isEventCurrentOrUpcoming,
 } from '../lib/eventDates';
-import { getCategoryPath, getNewsPosts, getPostHref } from '../lib/news';
+import { compareAnnouncements, getCategoryPath, getNewsPosts, getPostHref } from '../lib/news';
 
 // 1. Fetch all the markdown posts from our news folder
 const allNews = await getNewsPosts();
@@ -25,10 +25,10 @@ const upcomingActions = allNews
     .sort(compareEventsByStartDateAsc)
     .slice(0, 3); // Grab top 3
 
-// 4. BUILD FEED 2: Latest Announcements (Announcements ONLY, newest published first)
+// 4. BUILD FEED 2: Latest Announcements (Announcements ONLY, pinned first, then newest published first)
 const latestAnnouncements = allNews
     .filter((post: any) => post.frontmatter.category === 'Announcements')
-    .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
+    .sort(compareAnnouncements)
     .slice(0, 3); // Grab top 3
 
 // 5. BROADSTREET DATE STAMP
@@ -220,6 +220,9 @@ const heroImageAlt = 'Lewisham collage featuring the Catford Centre sign, public
                                 )}
                                 
                                 <div class="flex flex-wrap gap-4 mb-4 mt-2">
+                                    {post.frontmatter.pinned && (
+                                        <span class="bg-yp-red text-white px-2 py-1 font-bold text-sm uppercase tracking-widest">📌 Pinned</span>
+                                    )}
                                     <span class="bg-yp-slate text-yp-cream px-2 py-1 font-bold text-sm tracking-widest">
                                         {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}
                                     </span>

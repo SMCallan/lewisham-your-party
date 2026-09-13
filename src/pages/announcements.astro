@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getNewsPosts } from '../lib/news';
+import { compareAnnouncements, getNewsPosts } from '../lib/news';
 
 const allNews = await getNewsPosts();
 const filteredPosts = allNews
     .filter((post: any) => post.frontmatter.category === 'Announcements')
-    // Newsfeed: Always newest publish date first
-    .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+    // Newsfeed: Pinned posts first, then newest publish date first
+    .sort(compareAnnouncements);
 ---
 
 <Layout title="Announcements - Lewisham Your Party">
@@ -32,7 +32,10 @@ const filteredPosts = allNews
                                 class="w-full h-auto object-contain mb-6 shadow-sm mt-4"
                             />
                         )}
-                        <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase mt-4">
+                        <div class="flex flex-wrap items-center gap-4 text-sm font-bold text-gray-400 mb-2 tracking-widest uppercase mt-4">
+                            {post.frontmatter.pinned && (
+                                <span class="bg-yp-red text-white px-2 py-1">📌 Pinned</span>
+                            )}
                             <span>Published: {new Date(post.frontmatter.date).toLocaleDateString('en-GB')}</span>
                         </div>
                         <h2 class="text-3xl font-bold text-yp-slate mb-4">{post.frontmatter.title}</h2>
